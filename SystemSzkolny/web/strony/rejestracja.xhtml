@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Wirtualna Szkoła</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="rejestracja_logo">
+            <ui:insert >
+                <h:graphicImage value="/grafika/logoa.png"/>
+            </ui:insert>
+        </div>   
+
+        <div id="content" class="tlo_rejestracja">
+            <ui:insert >
+
+                
+                <h:form>
+                    <h:commandButton styleClass="cofnij" style="width: 43px; height: 40px; border: 0px" action="index.xhtml"/>
+                    <br/>
+                    <br/>
+                    <center>
+                        <h:outputText value="Rejestracja" style="font-size: 20px"/>
+                    </center>
+                    <br/>
+
+                    <center>
+                        <table border="0">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Imię</td>
+                                    <td><h:inputText/></td>
+                                </tr>
+                                <tr>
+                                    <td>Nazwisko</td>
+                                    <td><h:inputText/></td>
+                                </tr>
+                                <tr>
+                                    <td>Login</td>
+                                    <td><h:inputText value="#{user.login}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Hasło</td>
+                                    <td><h:inputSecret value="#{user.pass}"/></td>
+                                </tr>
+                                 <tr>
+                                    <td>Powtórz hasło</td>
+                                    <td><h:inputSecret value="#{user.pass}"/></td>
+                                </tr>
+                                 <tr>
+                                    <td>Adres Email</td>
+                                    <td><h:inputText /></td>
+                                </tr>
+                                <tr>
+                                    <td>Zarejestruj jako:
+
+                                    </td>
+                                    <td>  <h:selectOneRadio value="#{user.rola}">
+                                            <f:selectItem itemLabel="Nauczyciel" itemValue="Dyrektor" />
+                                            <f:selectItem itemLabel="Uczeń" itemValue="Klient"/>
+                                            <f:selectItem itemLabel="Rodzic" itemValue="Gość"/>
+                                        </h:selectOneRadio></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                        <br/>
+                        <h:commandButton value="Zarejestruj" style="width: 230px; border-radius: 0px; color: white; height: 35px; background-color: #b1320f" />
+
+                    </center>
+                </h:form>           
+            </ui:insert>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">Copyright by ŁŁS @ 2014</ui:insert>
+        </div>
+
+    </h:body>
+</html>

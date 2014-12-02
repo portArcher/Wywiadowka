@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Wirtualna Szkoła</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+            <ui:insert name="top">
+                <h:graphicImage value="/grafika/logoa.png"/>
+            </ui:insert>
+        </div>
+
+        <div id="top2">
+            <ui:insert name="top2">
+
+                <h:form>      
+                    <h:commandButton value="Dodaj klasę" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/dodaj_klase.xhtml"/>
+                    <h:commandButton value="Zarządzaj klasą" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/wybierz_klase.xhtml"/>
+                    <h:commandButton value="Wybierz klasę" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/wybierz_klase.xhtml"/>
+                    <h:commandButton value="Dodaj ucznia" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/dodaj_ucznia.xhtml"/>
+                    <h:outputText value="Witaj ktos!" style="background-color: #b1320f ;color: white; border: 0px; width: 140px"/>       
+                </h:form>
+
+
+            </ui:insert>
+        </div>
+
+        <div>
+            <div id="left">
+                <ui:insert name="left">
+                    
+                    <h:form>
+                        <br/>
+                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/aktualnosci.png']});  " action="/strony/aktualnosci.xhtml"/>
+                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/plan_graf.png']});  " action="/strony/plan_lekcji.xhtml"/>
+                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/obecnosci_graf.png']});  " action="/strony/obecnosci.xhtml"/>
+                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/oceny-graf.png']});  " action="/strony/oceny.xhtml"/>
+                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/mojekonto_graf.jpg']});  " action="/strony/moje_konto.xhtml"/>
+
+                        
+                    </h:form>
+                    
+                </ui:insert>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">
+                    <center>
+                        <h:form>
+                            
+                            
+                    
+                    <table border="0">
+                        <thead >
+                            <h2>
+                               Twoje klasy
+                            </h2>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><h:outputText value="#{bazaklasy.klasy_lista.size()}"/></td>
+                                    <td><h:outputText value="#{bazaklasy.getKlasy_lista()}"/></td>
+                                </tr>
+                                
+     
+                            </tbody>
+                        </table>
+
+                        <br/>
+                        <h:commandButton value="Dodaj" style="width: 230px; border-radius: 0px; color: white; height: 35px; background-color: #b1320f" action="/strony/dodaj_klase.xhtml" />
+
+                           </h:form>  
+                    </center> 
+                </ui:insert>
+            </div>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">Copyright by ŁŁS @ 2014</ui:insert>
+        </div>
+
+    </h:body>
+</html>

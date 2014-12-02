@@ -1,0 +1,163 @@
+
+#top {
+    
+    background-color: #b1320f;
+    color: white;
+    padding: 5px;
+    margin: 0px 60px 0px 60px;
+    height: 80px;
+    font-size: 20px;
+    font-style: italic;
+    font-family: fantasy;
+    
+}
+
+#rejestracja_logo {
+    background-color: #b1320f;
+    color: white;
+    padding: 5px;
+    margin-left: 34%;
+    height: 115px;
+    font-size: 20px;
+    font-style: italic;
+    font-family: fantasy; 
+}
+#logowanie2 {
+    background-color: #b1320f;
+    color: white;
+    padding: 5px;
+    margin-left: 35%;
+    height: 115px;
+    font-size: 20px;
+    font-style: italic;
+    font-family: fantasy; 
+}
+
+#top2 {
+    
+    background-color: #b1320f;
+    color: white;
+    padding: 0px;
+    margin: 0px 60px 15px 60px;
+    text-align: right; 
+    height: 21px;
+    font-size: 20px;
+     
+}
+
+#bottom {
+    position: relative;
+    background-color: #b1320f;
+    padding: 5px;
+    margin: 0px 60px 10px 60px;
+    text-align: center; 
+    height: 21px;
+    font-size: 12px;
+
+}
+
+#left {
+    position: relative;
+    float: left;
+    background-color: #2a2a2a;
+    padding: 1px;
+    width: 120px;
+    height: 480px;
+    
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+.center_content {
+    position: relative;
+    background-color: white;
+    padding: 0px;
+    height: 400px;
+    margin: 0px 60px 0px 60px;
+}
+
+.tlo_logowanie {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    height: 350px;
+    width: 350px;
+    font-size: 15px;
+    font-family: monospace;
+    margin-left: 36%;
+}
+
+.tlo_rejestracja {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    height: 350px;
+    width: 500px;
+    font-size: 15px;
+    font-family: monospace;
+    margin-left: 29%;
+
+    
+}
+
+.left_content {
+    position: relative;
+    background-color: white;
+    padding: 1px;
+    margin-left: 125px;
+    height: 480px;
+    
+    
+}
+.obecnosci {
+    position: relative;
+    background-color: white;
+    padding: 1px;
+    margin-left: 125px;
+    height: 480px;
+    width: 1600px;
+    
+    
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+.kolumna1{
+        background-color: brown;
+    }
+.kolumna2{
+        background-color: green;
+    }
+
+ .cofnij{
+    background: url(#{resource['images/powrot.png']});  
+       
+ }
+ 
+ .dalej{
+    background: url(#{resource['images/dalej.png']});  
+       
+ }
+
+#top a:link, #top a:visited {
+  color: white;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+  color: black;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+
