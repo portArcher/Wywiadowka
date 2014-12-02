@@ -1,0 +1,22 @@
+1)APLIKACJA SIECIOWA (JSF)
+*Konto nauczyciela (uprawnienia edycji):
+-dziennik ocen,
+-obecnoœci,
+-plan lekcji,
+-powiadomienia,
+-moje konto,
+*Konto ucznia (uprawnienia odczytu):
+-dziennik ocen,
+-obecnoœci,
+-plan lekcji,
+-powiadomienia,
+-moje konto,
+*Konto rodzica:
+-dziennik ocen (odczyt),
+-usprawiedliwienia (edycja),
+-powiadomienia,
+2)APLIKACJA ANDROID
+*Konto ucznia:
+-plan lekcji,
+-powiadomienia,
+-obecnoœci,
