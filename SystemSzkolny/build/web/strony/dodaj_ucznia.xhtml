@@ -16,7 +16,7 @@
 
         <div id="top">
             <ui:insert name="top">
-                <h:graphicImage value="/grafika/logoa.png"/>
+                <h:graphicImage value="/resources/images/logo.png"/>
             </ui:insert>
         </div>
 
@@ -40,11 +40,11 @@
                     
                     <h:form>
                         <br/>
-                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/aktualnosci.png']});  " action="index.xhtml"/>
-                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/plan_graf.png']});  " action="index.xhtml"/>
-                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/obecnosci_graf.png']});  " action="index.xhtml"/>
-                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/oceny-graf.png']});  " action="index.xhtml"/>
-
+                       <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/powiadomienia.png']});  " action="/strony/aktualnosci.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/plan_lekcji_new.png']});  " action="/strony/plan_lekcji.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/obecnosc.png']});  " action="/strony/obecnosci.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/dziennik.png']});  " action="/strony/oceny.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/konto.png']});  " action="/strony/moje_konto.xhtml"/>
                     </h:form>
                     
                 </ui:insert>
