@@ -1,12 +1,10 @@
 
 #top {
-    
-    background-color: #b1320f;
+    background: url(#{resource['images/top.png']});
     color: white;
-    padding: 5px;
-    margin: 0px 60px 0px 60px;
-    height: 80px;
-    padding-left: 57px;
+    height: 110px;
+    margin: 0px;
+    //padding-left: 57px;
     font-size: 20px;
     font-style: italic;
     font-family: fantasy;
@@ -14,27 +12,29 @@
 }
 #logo {
     width: 400px;
-    height: 5px;
-    padding: 50px;
+    height: 10px;
+    padding-left:30px;
     position:relative;
 }
 
 #rejestracja_logo {
-    background-color: #b1320f;
+    //background-color: #b1320f;
+    background-color:transparent;
     color: white;
     padding: 5px;
-    margin-left: 34%;
-    height: 115px;
+    margin-left: 29%;
+    height: 150px;
     font-size: 20px;
     font-style: italic;
     font-family: fantasy; 
 }
 #logowanie2 {
-    background-color: #b1320f;
+    //background-color: #b1320f;
+    background-color:transparent;
     color: white;
     padding: 5px;
     margin-left: 35%;
-    height: 115px;
+    height: 150px;
     font-size: 20px;
     font-style: italic;
     font-family: fantasy; 
@@ -42,25 +42,22 @@
 
 #top2 {
     
-    background-color: #b1320f;
+    background: url(#{resource['images/top.png']});
     color: white;
     padding: 0px;
-    margin: 0px 60px 15px 60px;
+    //margin: 0px 60px 15px 60px;
     text-align: right; 
-    height: 21px;
-    font-size: 20px;
+    height: 25px;
+    font-size: 23px;
      
 }
 
 #bottom {
-    position: relative;
-    background-color: #b1320f;
-    padding: 5px;
-    margin: 0px 60px 10px 60px;
+    background-color: white;
     text-align: center; 
-    height: 21px;
+    height: 150px;
     font-size: 12px;
-
+    background: url(#{resource['images/bottom.png']});
 }
 
 #left {
@@ -83,9 +80,11 @@
 .center_content {
     position: relative;
     background-color: white;
-    padding: 0px;
-    height: 520px;
-    margin: 0px 60px 0px 60px;
+    padding: 2px;
+    height: 619px;
+    width: 1200px;
+    //margin: 0px 60px 0px 60px;
+    margin: 0 auto;
 }
 
 .tlo_logowanie {

@@ -25,22 +25,19 @@
             <ui:insert name="top2">
 
                 <h:form>
-                    <h:commandButton value="STRONA GŁÓWNA" style="background-color: #b1320f ;color: white; border: 0px; width: 140px" action="/strony/index.xhtml"/> 
-                    <h:commandButton value="ZALOGUJ SIĘ" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/logowanie.xhtml"/>
-                    <h:commandButton value="REJESTRACJA" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/rejestracja.xhtml"/>
-                    <h:commandButton value="KONTAKT" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/kontakt.xhtml"/>                
+                    <h:commandButton value="STRONA GŁÓWNA" style="background-color:transparent;color: white; border: 0px; width: 140px" action="/strony/index.xhtml"/> 
+                    <h:commandButton value="ZALOGUJ SIĘ" style="background-color:transparent;color: white; border: 0px; width: 140px" action="/strony/logowanie.xhtml"/>
+                    <h:commandButton value="REJESTRACJA" style="background-color:transparent;color: white; border: 0px; width: 140px" action="/strony/rejestracja.xhtml"/>
+                    <h:commandButton value="KONTAKT" style="background-color:transparent;color: white; border: 0px; width: 140px" action="/strony/kontakt.xhtml"/>                
                 </h:form>
 
 
             </ui:insert>
         </div>
 
-        <div id="content" class="center_content">
-            <ui:insert name="content">
-                <h:form> 
-             
-                        
-                </h:form>
+        <div id="content" class="center_content" align="center">
+            <ui:insert name="content" >
+                <h:graphicImage value="/resources/images/centerContent.png"/>
             </ui:insert>
         </div>
 
