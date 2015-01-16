@@ -72,15 +72,19 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>Id klasy (do zmiany pozniej): </td>
+                                    <td><h:inputText value="#{dodajKlase.klasaIDdodaj}"/></td>
+                                </tr>
+                                <tr>
                                     <td>Nazwa klasy: </td>
-                                    <td><h:inputText value="#{bazaklasy.nazwa}"/></td>
+                                    <td><h:inputText value="#{dodajKlase.nazwaDodaj}"/></td>
                                 </tr>
                                
                             </tbody>
                         </table>
 
                         <br/>
-                        <h:commandButton value="Dodaj" style="width: 230px; border-radius: 0px; color: white; height: 35px; background-color: #b1320f" action="#{bazaklasy.dodaj2()}" />
+                        <h:commandButton value="Dodaj" style="width: 230px; border-radius: 0px; color: white; height: 35px; background-color: #b1320f" action="#{dodajKlase.addAction()}" />
                                                 <h:commandButton value="Zobacz klasy" style="width: 230px; border-radius: 0px; color: white; height: 35px; background-color: #b1320f" action="/strony/zarzadzaj_klasa.xhtml" />
 
                     </center>     
