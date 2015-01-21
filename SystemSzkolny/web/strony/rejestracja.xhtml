@@ -25,7 +25,7 @@
 
                 
                 <h:form>
-                    <h:commandButton styleClass="cofnij" style="width: 43px; height: 40px; border: 0px" action="index.xhtml"/>
+                    <h:commandButton styleClass="cofnij" style="width: 43px; height: 40px; border: 0px" action="/index.xhtml"/>
                     <br/>
                     <br/>
                     <center>
@@ -44,7 +44,7 @@
                             <tbody>
                                 <tr>
                                     <td>Imię</td>
-                                    <td><h:inputText/></td>
+                                    <td><h:inputText value="#{dodajUsera.userIDdodaj}"/></td>
                                 </tr>
                                 <tr>
                                     <td>Nazwisko</td>
@@ -52,15 +52,15 @@
                                 </tr>
                                 <tr>
                                     <td>Login</td>
-                                    <td><h:inputText value="#{user.login}"/></td>
+                                    <td><h:inputText value="#{dodajUsera.imieDodaj}"/></td>
                                 </tr>
                                 <tr>
                                     <td>Hasło</td>
-                                    <td><h:inputSecret value="#{user.pass}"/></td>
+                                    <td><h:inputSecret value="#{dodajUsera.hasloDodaj}"/></td>
                                 </tr>
                                  <tr>
                                     <td>Powtórz hasło</td>
-                                    <td><h:inputSecret value="#{user.pass}"/></td>
+                                    <td><h:inputSecret value=" "/></td>
                                 </tr>
                                  <tr>
                                     <td>Adres Email</td>
@@ -70,7 +70,7 @@
                                     <td>Zarejestruj jako:
 
                                     </td>
-                                    <td>  <h:selectOneRadio value="#{user.rola}">
+                                    <td>  <h:selectOneRadio value=" ">
                                             <f:selectItem itemLabel="Nauczyciel" itemValue="Dyrektor" />
                                             <f:selectItem itemLabel="Uczeń" itemValue="Klient"/>
                                             <f:selectItem itemLabel="Rodzic" itemValue="Gość"/>
@@ -81,7 +81,7 @@
                         </table>
 
                         <br/>
-                        <h:commandButton value="Zarejestruj" style="width: 230px; border-radius: 0px; color: white; height: 35px; background-color: #b1320f" />
+                        <h:commandButton value="Zarejestruj" style="width: 230px; border-radius: 0px; color: white; height: 35px; background-color: #b1320f" action="#{dodajUsera.addAction()}"/>
 
                     </center>
                 </h:form>           
