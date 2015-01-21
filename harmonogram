@@ -1,0 +1,19 @@
+Harmonogram
+1.	Grudzień:
+  a.	Stworzenie prototypu strony
+  b.	Stworzenie szaty graficznej
+  c.	Stworzenie bazy danych
+2.	Styczeń
+  a.	Poprawienie szaty graficznej
+  b.	Połączenie bazy danych z projektem
+  c.	Implementacja metod umożliwiających dodawanie i wyświetlanie klas w projekcie  
+  d.	Walidacja użytkowników 
+3.	Luty
+  a.	Plan lekcji 
+    i.	Dodawanie przedmiotów 
+    ii.	Wyświetlanie planu lekcji dla poszczególnych użytkowników
+    iii.	Dodawanie i usuwanie przedmiotów  w konkretnym planie lekcji
+4.	Marzec
+  a.	Obecności dla uczniów
+5.	Kwiecień
+  a.	Dziennik ocen
