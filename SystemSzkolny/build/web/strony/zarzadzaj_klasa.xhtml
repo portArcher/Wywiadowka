@@ -76,6 +76,13 @@
                             </f:facet>
                             <h:outputText value="#{c.klasaNazwa}" />
                         </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Edytuj" />
+                            </f:facet>
+                            <h:commandButton value="Plan lekcji" action="/strony/dodajPlanLekcji.xhtml"/>
+                            
+                        </h:column>
                             
                         </h:dataTable>
                     </html></f:view>

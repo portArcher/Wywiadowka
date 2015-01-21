@@ -14,16 +14,11 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class Klasa {
-    int i=0;
     Connection con1 = null;
     CallableStatement call= null;
     ResultSet result = null;
     Statement stmt = null;
 
-    public int getI() {
-        return i;
-    }
-    
     private List <KlasaInfo> klasaLista = new ArrayList();
     //connect to DB and get customer list
     public List getKlasaList() throws SQLException{
@@ -31,13 +26,8 @@ public class Klasa {
         Labcon lc = new Labcon();
         con1 = lc.getLocalConnection();
         stmt=con1.createStatement();
-        //SELECT COUNT(*) FROM `news`
-        
         String sql = "USE 686_szkola";
         stmt.executeQuery(sql); 
-        //String sqlilosc = "SELECT COUNT(*) FROM Klasy";
-        //iloscWierszy = stmt.executeQuery(sqlilosc);
-        //ilosc =  ((Number) iloscWierszy.getObject(1)).intValue();
         
         String strSql="select ID, Nazwa from Klasy";
         //System.err.println("****"+strSql);
@@ -48,10 +38,7 @@ public class Klasa {
             nowa.setKlasaID(result.getString("Id"));
             nowa.setKlasaNazwa(result.getString("Nazwa"));
             klasaLista.add(nowa);
-            i++;
         }
-        System.out.println("Ilosc wierszy"+i);
-        i=0; 
         result.close();
         return klasaLista;
     }
