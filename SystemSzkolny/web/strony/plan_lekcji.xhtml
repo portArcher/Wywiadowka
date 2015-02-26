@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
@@ -81,8 +82,28 @@
                             <h:outputText value="#{c.klasaNazwa}" />
                         </h:column>
                         </h:dataTable>
+                        
+                        
+                        
+                        <p:dataTable id="radioDT" var="kl" value="#{d.klasaList}" selection="#{d.klasaList}" rowKey="#{kl}">
+        <f:facet name="header">
+        </f:facet>
+        <p:column selectionMode="single" style="width:16px;text-align:center"/>
+        <p:column headerText="Id">
+            <h:outputText value="#{kl.klasaID}" />
+        </p:column>
+        <p:column headerText="Nazwa Klasy">
+            <h:outputText value="#{kl.klasaNazwa}" />
+        </p:column>
+        <f:facet name="footer">
+           <!--<p:commandButton process="radioDT" update=":form:carDetail" icon="ui-icon-search" value="View" oncomplete="PF('carDialog').show()" />-->
+        </f:facet>
+    </p:dataTable>
+                        
+                        
                     </html>
-                    </f:view>     
+                    </f:view>
+                        </center>
                     </h:form>
              </ui:insert>
             </div>
