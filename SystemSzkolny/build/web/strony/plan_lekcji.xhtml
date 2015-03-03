@@ -65,7 +65,9 @@
                         <head>
                             <link rel="stylesheet" type="text/css" href="css/table-style.css" />
                         </head>
-                        <h:dataTable value="#{klasa.klasaList}" var="c"
+                        
+                        
+                        <!--<h:dataTable value="#{klasa.klasaList}" var="c"
                             styleClass="order-table"
                             headerClass="order-table-header"
                             rowClasses="order-table-odd-row,order-table-even-row">
@@ -83,25 +85,67 @@
                             <h:outputText value="#{c.klasaNazwa}" />
                         </h:column>
                         </h:dataTable>
+                        -->
+                        <h:form id="form1">
+                        <p:dataTable id="radioDT" var="kl" value="#{d.klasaList}" selection="#{d.klasaList}" rowKey="#{kl}" style="width:300px" >
+                            <f:facet name="header">
+                            </f:facet>
+                            <p:column selectionMode="single" style="width:15px;text-align:center"/>
+                            <p:column headerText="Id" style="width:30px">
+                                <h:outputText value="#{kl.klasaID}" />
+                            </p:column>
+                            <p:column headerText="Nazwa Klasy">
+                                <h:outputText value="#{kl.klasaNazwa}" />
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton process="radioDT" update=":form1:carDetail" icon="ui-icon-search" value="View" oncomplete="carDialog.show()" />
+                            </f:facet>
+                        </p:dataTable>
                         
-                        
-                        
-                        <p:dataTable id="radioDT" var="kl" value="#{d.klasaList}" selection="#{d.klasaList}" rowKey="#{kl}">
-        <f:facet name="header">
-        </f:facet>
-        <p:column selectionMode="single" style="width:16px;text-align:center"/>
-        <p:column headerText="Id">
-            <h:outputText value="#{kl.klasaID}" />
-        </p:column>
-        <p:column headerText="Nazwa Klasy">
-            <h:outputText value="#{kl.klasaNazwa}" />
-        </p:column>
-        <f:facet name="footer">
-           <!--<p:commandButton process="radioDT" update=":form:carDetail" icon="ui-icon-search" value="View" oncomplete="PF('carDialog').show()" />-->
-        </f:facet>
-    </p:dataTable>
-                        
-                        
+                        <!--Okienko wyskakujące-->
+                        <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:outputPanel id="carDetail" style="text-align:center;">
+                                <p:panelGrid  columns="2" rendered="#{not empty dtSelectionView.wybranaKlasa}">
+                                    <f:facet name="header">
+                                        plan
+                                    </f:facet>
+                                    <h:outputText value="Id:" />
+                                    <h:outputText value="idifiifd" />
+ 
+                                </p:panelGrid>
+                                <!--<p:dataTable rendered="#{not empty dtSelectionView.wybranaKlasa}" style="width:500px">
+                                    <f:facet name="header">
+                                        PLAN LEKCJI
+                                    </f:facet>
+                                    
+                                    <p:column headerText="Godzina" style="width:50px">
+                                        <h:outputText value="8:00-8:45"/>
+                                        <h:outputText value="9:00-9:45"/>
+                                        <h:outputText value="10:00-10:45"/>
+                                        <h:outputText value="11:00-11:45"/>
+                                        <h:outputText value="12:00-12:45"/>
+                                        <h:outputText value="13:00-13:45"/>
+                                    </p:column>
+                                    <p:column headerText="Poniedziałek" style="width:50px">
+                                        
+                                    </p:column>
+                                    <p:column headerText="Wtorek" style="width:50px">
+                                        
+                                    </p:column>
+                                    <p:column headerText="Środa" style="width:50px">
+                                        
+                                    </p:column>
+                                    <p:column headerText="Czwartek" style="width:50px">
+                                        
+                                    </p:column>
+                                    <p:column headerText="Piątek" style="width:50px">
+                                        
+                                    </p:column>
+                                    
+                                </p:dataTable>-->
+                            </p:outputPanel>
+                        </p:dialog>
+                        </h:form>
                     </html>
                     </f:view>
                         </center>
