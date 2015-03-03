@@ -1,19 +1,16 @@
-<?xml version='1.0' encoding='UTF-8' ?> 
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
+    
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <title>Wirtualna Szkoła</title>
-        
- 
     </h:head>
-
     <h:body>
 
         <div id="top">
@@ -26,10 +23,11 @@
             <ui:insert name="top2">
 
                 <h:form>      
-                    <h:commandButton value="Dodaj klasę" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/dodaj_klase.xhtml"/>
-                    <h:commandButton value="Zarządzaj klasą" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/zarzadzaj_klasa.xhtml"/>
-                    <h:commandButton value="Wybierz klasę" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/wybierz_klase.xhtml"/>
-                    <h:outputText value="Witaj ktos!" style="background-color: #b1320f ;color: white; border: 0px; width: 140px"/>       
+                    <h:commandButton value="Powrót" style="background-color: transparent;color: white; border: 0px; width: 140px" action="/strony/plan_lekcji.xhtml.xhtml"/>
+                    <h:commandButton value="Dodaj klasę" style="background-color: transparent;color: white; border: 0px; width: 140px" action="/strony/logowanie.xhtml"/>
+                    <h:commandButton value="Zarządzaj klasą" style="background-color: transparent;color: white; border: 0px; width: 140px" action="/strony/zarzadzaj_klasa.xhtml"/>
+                    <h:commandButton value="Wybierz klasę" style="background-color: transparent;color: white; border: 0px; width: 140px" action="/strony/wybierz_klase.xhtml"/>
+                    <h:outputText value="Witaj ktos!" style="background-color: transparent ;color: white; border: 0px; width: 140px"/>       
                 </h:form>
 
 
@@ -59,9 +57,8 @@
                 <ui:insert name="content">
                     <h:form>
                         <center>
-                            <br/>
-                                       
-                            <h2>Dodaj klasę</h2>
+                                
+                            <h2>Dodaj Przedmiot</h2>
                             
                         <table border="0">
                             <thead>
@@ -72,24 +69,23 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Id klasy (do zmiany pozniej): </td>
-                                    <td><h:inputText value="#{dodajKlase.klasaIDdodaj}"/></td>
+                                    <td>Id</td>
+                                    <td><h:inputText value="#{dodajPrzedmiot.przedmiotIDdodaj}"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Nazwa klasy: </td>
-                                    <td><h:inputText value="#{dodajKlase.nazwaDodaj}"/></td>
+                                    <td>Nazwa przedmiotu: </td>
+                                    <td><h:inputText value="#{dodajPrzedmiot.nazwaDodaj}"/></td>
                                 </tr>
                                
                             </tbody>
                         </table>
 
                         <br/>
-                        <h:commandButton value="Dodaj" style="width: 230px; border-radius: 0px; color: white; height: 35px; background-color: #b1320f" action="#{dodajKlase.addAction()}" />
-                                                <h:commandButton value="Zobacz klasy" style="width: 230px; border-radius: 0px; color: white; height: 35px; background-color: #b1320f" action="/strony/zarzadzaj_klasa.xhtml" />
+                        <h:commandButton value="Dodaj" style="width: 230px; border-radius: 0px; color: white; height: 35px; background-color: #b1320f" action="#{dodajPrzedmiot.addAction()}" />
 
-                    </center>     
-                         </h:form>
-             </ui:insert>
+                        </center>     
+                    </h:form>
+                </ui:insert>
             </div>
         </div>
 
