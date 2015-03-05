@@ -98,12 +98,12 @@
                                 <h:outputText value="#{kl.klasaNazwa}" />
                             </p:column>
                             <f:facet name="footer">
-                                <p:commandButton process="radioDT" icon="ui-icon-search" value="View" oncomplete="PF('carDialog').show()" />
+                                <p:commandButton process="radioDT" icon="ui-icon-search" value="View" oncomplete="PF('carDialog').show();" />
                             </f:facet>
                         </p:dataTable>
                         
                         <!--Okienko wyskakujące   update=":form1:carDetail"-->
-                        <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:dialog header="Plan lekcji" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                             <p:outputPanel id="carDetail" style="text-align:center;">
                                 <!--<p:panelGrid  columns="2" rendered="#{not empty dtSelectionView.wybranaKlasa}">
                                     <f:facet name="header">
@@ -112,8 +112,9 @@
                                     <h:outputText value="Id:" />
                                     <h:outputText value="idifiifd" />
                                         not empty 
+                                rendered="#{dtSelectionView.wybranaKlasa}"
                                 </p:panelGrid>-->
-                                <p:dataTable rendered="#{dtSelectionView.wybranaKlasa}" style="width:500px">
+                                <p:dataTable style="width:500px">
                                     <f:facet name="header">
                                         PLAN LEKCJI
                                     </f:facet>
