@@ -98,22 +98,22 @@
                                 <h:outputText value="#{kl.klasaNazwa}" />
                             </p:column>
                             <f:facet name="footer">
-                                <p:commandButton process="radioDT" icon="ui-icon-search" value="View" oncomplete="PF('carDialog').show()" />
+                                <p:commandButton process="radioDT" update=":form1:carDetail" icon="ui-icon-search" value="View" oncomplete="carDialog.show()" />
                             </f:facet>
                         </p:dataTable>
                         
-                        <!--Okienko wyskakujące   update=":form1:carDetail"-->
+                        <!--Okienko wyskakujące-->
                         <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                             <p:outputPanel id="carDetail" style="text-align:center;">
-                                <!--<p:panelGrid  columns="2" rendered="#{not empty dtSelectionView.wybranaKlasa}">
+                                <p:panelGrid  columns="2" rendered="#{not empty dtSelectionView.wybranaKlasa}">
                                     <f:facet name="header">
                                         plan
                                     </f:facet>
                                     <h:outputText value="Id:" />
                                     <h:outputText value="idifiifd" />
-                                        not empty 
-                                </p:panelGrid>-->
-                                <p:dataTable rendered="#{dtSelectionView.wybranaKlasa}" style="width:500px">
+ 
+                                </p:panelGrid>
+                                <!--<p:dataTable rendered="#{not empty dtSelectionView.wybranaKlasa}" style="width:500px">
                                     <f:facet name="header">
                                         PLAN LEKCJI
                                     </f:facet>
@@ -142,7 +142,7 @@
                                         
                                     </p:column>
                                     
-                                </p:dataTable>
+                                </p:dataTable>-->
                             </p:outputPanel>
                         </p:dialog>
                         </h:form>
