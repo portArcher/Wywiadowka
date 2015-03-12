@@ -100,19 +100,20 @@
                                 <h:outputText value="#{kl.klasaNazwa}" />
                             </p:column>
                             <f:facet name="footer">
+
                                 <p:commandButton process="radioDT" icon="ui-icon-search" value="View" oncomplete="PF('carDialog').show();" />
                             </f:facet>
                         </p:dataTable>
                         
-                        <!--Okienko wyskakujące   update=":form1:carDetail"-->
-                        <p:dialog header="Plan lekcji" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-                            <p:outputPanel id="carDetail" style="text-align:center;" >
-                                
-                                <!--rendered="#{not empty dtSelectionView.wybranaKlasa}"-->
-                               <!--  <p:panelGrid columns="3">
+                        <!--Okienko wyskakujące-->
+                        <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:outputPanel id="carDetail" style="text-align:center;">
+                                <!--<p:panelGrid  columns="2" rendered="#{not empty dtSelectionView.wybranaKlasa}">
+
                                     <f:facet name="header">
                                         <h:outputText value="PLAN LEKCJI" /> 
                                     </f:facet>
+
                                     <p:column headerText="Godzina">
                                         <h:outputText value="Content" /> 
                                     <h:outputText value="Content" /> 
@@ -128,10 +129,12 @@
                                     <h:outputText value="Content" /> 
                                 </p:panelGrid>  -->
                                         <!--not empty 
-                                rendered="#{d.klasaList}"-->
+                                rendered="#{d.klasaList}"
+                                        
+                                rendered="#{not empty dtSelectionView.wybranaKlasa}"        -->
                                 
-                                <p:dataTable var="kl" value="#{g.godzinyList}">
-                                   
+                                <p:dataTable  style="width:500px">
+
                                     <f:facet name="header">
                                         PLAN LEKCJI
                                     </f:facet>
@@ -155,7 +158,7 @@
                                     <p:column headerText="Piątek" style="width:50px">
                                                                           
                                     </p:column>
-                                </p:dataTable>
+                                </p:dataTable>            
                             </p:outputPanel>
                         </p:dialog>
                         </h:form>
