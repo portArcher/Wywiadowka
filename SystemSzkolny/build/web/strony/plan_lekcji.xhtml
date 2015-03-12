@@ -132,9 +132,7 @@
                                 rendered="#{d.klasaList}"
                                         
                                 rendered="#{not empty dtSelectionView.wybranaKlasa}"        -->
-                                
-                                <p:dataTable  style="width:500px">
-
+<p:dataTable var="kl" value="#{g.godzinyList}">
                                     <f:facet name="header">
                                         PLAN LEKCJI
                                     </f:facet>
