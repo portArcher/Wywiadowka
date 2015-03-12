@@ -14,6 +14,7 @@ public class dodajKlase {
     public int klasaIDdodaj;
     public String nazwaDodaj;
 
+    
     public int getKlasaIDdodaj() {
         return klasaIDdodaj;
     }
