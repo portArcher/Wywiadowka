@@ -75,6 +75,7 @@
     background-color: #ece3a5;
     padding: 5px;
     width: 150px;
+    
 }
 
 .center_content {
@@ -83,8 +84,10 @@
     padding: 2px;
     height: 619px;
     width: 1200px;
+    overflow:scroll;
     //margin: 0px 60px 0px 60px;
     margin: 0 auto;
+    
 }
 
 .tlo_logowanie {
@@ -125,6 +128,9 @@
     margin-left: 125px;
     height: 480px;
     width: 1600px;
+    overflow:scroll;
+    //margin: 0px 60px 0px 60px;
+    margin: 0 auto;
 }
 
 .right_content {

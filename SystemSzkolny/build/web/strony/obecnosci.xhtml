@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -26,10 +27,10 @@
             <ui:insert name="top2">
 
                 <h:form>      
-                    <h:commandButton value="Dodaj klasę" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/logowanie.xhtml"/>
-                    <h:commandButton value="Zarządzaj klasą" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/zarzadzaj_klasa.xhtml"/>
-                    <h:commandButton value="Wybierz klasę" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/wybierz_klase.xhtml"/>
-                    <h:outputText value="Witaj ktos!" style="background-color: #b1320f ;color: white; border: 0px; width: 140px"/>       
+                    <h:commandButton value="Dodaj klasę" style="background-color: transparent;color: white; border: 0px; width: 140px" action="/strony/logowanie.xhtml"/>
+                    <h:commandButton value="Zarządzaj klasą" style="background-color: transparent;color: white; border: 0px; width: 140px" action="/strony/zarzadzaj_klasa.xhtml"/>
+                    <h:commandButton value="Wybierz klasę" style="background-color: transparent;color: white; border: 0px; width: 140px" action="/strony/wybierz_klase.xhtml"/>
+                    <h:outputText value="Witaj ktos!" style="background-color: transparent ;color: white; border: 0px; width: 140px"/>       
                 </h:form>
 
 
@@ -42,12 +43,11 @@
 
                     <h:form>
                         <br/>
-                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/aktualnosci.png']});  " action="/strony/aktualnosci.xhtml"/>
-                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/plan_graf.png']});  " action="/strony/plan_lekcji.xhtml"/>
-                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/obecnosci_graf.png']});  " action="/strony/obecnosci.xhtml"/>
-                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/oceny-graf.png']});  " action="/strony/oceny.xhtml"/>
-                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/mojekonto_graf.jpg']});  " action="/strony/moje_konto.xhtml"/>
-
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/powiadomienia.png']});  " action="/strony/aktualnosci.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/plan_lekcji_new.png']});  " action="/strony/plan_lekcji.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/obecnosc.png']});  " action="/strony/obecnosci.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/dziennik.png']});  " action="/strony/oceny.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/konto.png']});  " action="/strony/moje_konto.xhtml"/>
 
                     </h:form>
 
@@ -55,11 +55,31 @@
             </div>
 
 
-            <div id="content" class="obecnosci">
+            <div id="content" class="center_content">
                 <ui:insert name="content">
+                    <h:form id="form1">
+                        <p:dataTable id="radioDT" var="kl" value="#{u.userList}"selection="#{u.userList}" rowKey="#{user}" style="width:300px" >
+                            <f:facet name="header">
+                            </f:facet>
+                            <p:column selectionMode="single" style="width:16px;text-align:center">
+                            </p:column>
+                            
+                            <p:column headerText="Id" style="width:30px">
+                                <h:outputText value="#{user.idUser}" />
+                            </p:column>
+                            <p:column headerText="Imię">
+                                <h:outputText value="#{user.imie}" />
+                            </p:column>
+                            <p:column headerText="Nazwisko">
+                                <h:outputText value="#{user.nazwisko}" />
+                            </p:column>
+                            <f:facet name="footer">
 
-
-                    <h:form>
+                                <!--<p:commandButton process="radioDT" icon="ui-icon-search" value="View" oncomplete="PF('carDialog').show();" />-->
+                            </f:facet>
+                        </p:dataTable>
+                    </h:form>    
+                    <!--<h:form>
 
 
                         <h:panelGrid  columns="3" width="110%" style="float: top; font-size: 20px">
@@ -943,7 +963,7 @@
                             </h:panelGroup>
                         </h:panelGrid>
 
-                    </h:form>
+                    </h:form> -->
 
 
                 </ui:insert>
