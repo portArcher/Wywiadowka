@@ -85,12 +85,14 @@
                             <h:outputText value="#{c.klasaNazwa}" />
                         </h:column>
                         </h:dataTable>
+                        
                         -->
                         <h:form id="form1">
-                            <p:dataTable id="radioDT" var="kl" value="#{d.klasaList}" selection="#{d.klasaList}" rowKey="#{kl}" style="width:300px" >
+                            <p:dataTable id="radioDT" var="kl" value="#{d.klasaList}" style="width:300px" selection="#{d.koniec}" rowKey="#{KlasaInfo.klasaID}">
+                            
                             <f:facet name="header">
                             </f:facet>
-                            <p:column selectionMode="single" style="width:16px;text-align:center">
+                            <p:column id="test" selectionMode="single" style="width:16px;text-align:center">
                             </p:column>
                             
                             <p:column headerText="Id" style="width:30px">
@@ -101,11 +103,12 @@
                             </p:column>
                             <f:facet name="footer">
 
-                                <p:commandButton process="radioDT" icon="ui-icon-search" value="View" oncomplete="PF('carDialog').show();" />
+                                <p:commandButton process="radioDT" icon="ui-icon-search" value="View"/>
+                                
                             </f:facet>
                         </p:dataTable>
                         
-                        <!--Okienko wyskakujące-->
+                        <!--Okienko wyskakujące   oncomplete="PF('carDialog').show();"-->
                         <p:dialog header="Plan" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                             <p:outputPanel id="carDetail" style="text-align:center;">
                                 <!--<p:panelGrid  columns="2" rendered="#{not empty dtSelectionView.wybranaKlasa}">

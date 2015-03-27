@@ -17,7 +17,12 @@ public class Plan {
     Statement stmt = null;
     public Boolean klik = false;
     private List <PlanInfo> planLista = new ArrayList();
+    public int index;
     //connect to DB and get customer list
+    public void zmienIndex(int i){
+        index=i;
+        System.out.println(i);
+    }
     public List getPlanList() throws SQLException{
         planLista.clear();
         Labcon lc = new Labcon();
@@ -31,7 +36,7 @@ public class Plan {
         result=stmt.executeQuery(strSql);
         
         while(result.next()){
-            if(result.getInt("Id_klasa")==0){
+            if(result.getInt("Id_klasa")==index){
                 PlanInfo nowa = new PlanInfo();
                 nowa.setID(result.getInt("Id"));
                 nowa.setId_przedmiot(result.getInt("Id_przedmiot"));
