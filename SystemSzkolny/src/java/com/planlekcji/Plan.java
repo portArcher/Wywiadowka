@@ -31,15 +31,13 @@ public class Plan {
         result=stmt.executeQuery(strSql);
         
         while(result.next()){
-            if(result.getInt("Id_klasa")==0){
-                PlanInfo nowa = new PlanInfo();
-                nowa.setID(result.getInt("Id"));
-                nowa.setId_przedmiot(result.getInt("Id_przedmiot"));
-                nowa.setId_godzina(result.getInt("Id_godzina"));
-                nowa.setId_dzien(result.getInt("Id_dzien"));
-                nowa.setId_klasa(result.getInt("Id_klasa"));
-                planLista.add(nowa);
-            }
+            PlanInfo nowa = new PlanInfo();
+            nowa.setID(result.getInt("Id"));
+            nowa.setId_przedmiot(result.getInt("Id_przedmiot"));
+            nowa.setId_godzina(result.getInt("Id_godzina"));
+            nowa.setId_dzien(result.getInt("Id_dzien"));
+            nowa.setId_klasa(result.getInt("Id_klasa"));
+            planLista.add(nowa);
         }
         result.close();
         return planLista;

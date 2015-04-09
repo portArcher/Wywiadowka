@@ -14,10 +14,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
-@ManagedBean(name="u")
-@SessionScoped
+@ManagedBean
+@RequestScoped
 public class User {
     Connection con1 = null;
     CallableStatement call= null;
@@ -26,7 +26,7 @@ public class User {
 
     private List <User.UserInfo> userLista = new ArrayList();
     //connect to DB and get customer list
-    public List getUserList() throws SQLException{
+    public List getKlasaList() throws SQLException{
         userLista.clear();
         LabconUser lc = new LabconUser();
         con1 = lc.getLocalConnection();
@@ -34,15 +34,15 @@ public class User {
         String sql = "USE 686_szkola";
         stmt.executeQuery(sql); 
         
-        String strSql="select ID, Imie, Nazwisko from Uzytkownicy";
+        String strSql="select ID, Imie from Uzytkownicy";
         //System.err.println("****"+strSql);
         result=stmt.executeQuery(strSql);
         
         while(result.next()){
             User.UserInfo nowa = new User.UserInfo();
             nowa.setIdUser(result.getString("Id"));
+            nowa.setHaslo(result.getString("Haslo"));
             nowa.setImie(result.getString("Imie"));
-            nowa.setNazwisko(result.getString("Nazwisko"));
             
             userLista.add(nowa);
         }
@@ -51,7 +51,7 @@ public class User {
     
     }
     public class UserInfo {
-            String imie, nazwisko, idUser;
+            String imie, nazwisko, haslo, idUser;
 
         public String getNazwisko() {
             return nazwisko;
@@ -75,8 +75,17 @@ public class User {
 
         public void setImie(String imie) {
             this.imie = imie;
-        }       
-    }
+        }
+
+        public String getHaslo() {
+            return haslo;
+        }
+
+        public void setHaslo(String haslo) {
+            this.haslo = haslo;
+        }
+            
+        }
     
     public User() {
     }
