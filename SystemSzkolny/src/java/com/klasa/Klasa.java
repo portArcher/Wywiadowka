@@ -1,8 +1,7 @@
 
 package com.klasa;
 
-import com.klasa.Klasa.KlasaInfo;
-import java.io.Serializable;
+import com.planlekcji.Plan;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,30 +10,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 
 @ManagedBean(name="d")
-@ViewScoped
-public class Klasa{
+@SessionScoped
+public class Klasa {
     Connection con1 = null;
     CallableStatement call= null;
     ResultSet result = null;
     Statement stmt = null;
-    int idKoniec;
     
-    
-    public List <KlasaInfo> klasaLista = new ArrayList();
-    public KlasaInfo koniec= new KlasaInfo();
-
-    public KlasaInfo getKoniec() {
-        return koniec;
-    }
-
-    public void setKoniec(KlasaInfo koniec) {
-        this.koniec = koniec;
-    }
-
+    public Plan listaPlanow;
+    private List <KlasaInfo> klasaLista = new ArrayList();
     //connect to DB and get customer list
     public List getKlasaList() throws SQLException{
         klasaLista.clear();
@@ -58,7 +46,6 @@ public class Klasa{
         con1.close();
         return klasaLista;
     }
-
     public class KlasaInfo {
         public String klasaID;
         public String klasaNazwa;
@@ -68,9 +55,6 @@ public class Klasa{
         }
         public String getKlasaNazwa() {
             return klasaNazwa;
-        }
-        public void test(){
-            System.out.println("dziala!");
         }
 
         public void setKlasaID(String klasaID) {
@@ -86,11 +70,8 @@ public class Klasa{
         
     }
     
-    public void a(KlasaInfo c){
-        System.out.println("gtg"+c.klasaNazwa);
-    }
+    
     public Klasa() {
-
     }
     
     

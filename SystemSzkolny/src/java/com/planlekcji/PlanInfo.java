@@ -9,7 +9,6 @@ public class PlanInfo {
         public int Id_klasa;
 
         public int getID() {
-            System.out.println(ID);
             return ID;
         }
 
