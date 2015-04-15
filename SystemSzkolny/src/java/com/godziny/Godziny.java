@@ -22,7 +22,7 @@ Connection con1 = null;
     
     private List <String> godzinLista = new ArrayList();
     //connect to DB and get customer list
-    public List getGodzinyList() throws SQLException{
+    public List getGodzinList() throws SQLException{
         godzinLista.clear();
         Labcon lc = new Labcon();
         con1 = lc.getLocalConnection();
@@ -40,6 +40,7 @@ Connection con1 = null;
             godzinLista.add(nowa);
         }
         result.close();
+        System.out.println(""+godzinLista.get(0));
         return godzinLista;
     }
     public Godziny() {
