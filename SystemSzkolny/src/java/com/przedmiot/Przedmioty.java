@@ -13,7 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 
-@ManagedBean
+@ManagedBean(name="test")
 @RequestScoped
 public class Przedmioty {
     Connection con1 = null;
@@ -21,7 +21,7 @@ public class Przedmioty {
     ResultSet result = null;
     Statement stmt = null;
 
-    private List <PrzedmiotInfo> przedmiotyLista = new ArrayList();
+    private final List <PrzedmiotInfo> przedmiotyLista = new ArrayList();
     //connect to DB and get customer list
     public List getPrzedmiotyList() throws SQLException{
         przedmiotyLista.clear();
@@ -44,6 +44,8 @@ public class Przedmioty {
         result.close();
         return przedmiotyLista;
     }
+
+    
     public class PrzedmiotInfo {
         public String przedmiotID;
         public String przedmiotNazwa;

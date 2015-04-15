@@ -24,7 +24,6 @@ public class SelectionView implements Serializable{
         this.klasainfo = klasainfo;
     }
     
-   
     public List<Przedmioty> getPrzedmioty() {
         return przedmioty;
     }

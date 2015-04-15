@@ -20,7 +20,16 @@ public class Klasa {
     CallableStatement call= null;
     ResultSet result = null;
     Statement stmt = null;
-    
+    public String wejscie;
+
+    public String getWejscie() {
+        return wejscie;
+    }
+
+    public void setWejscie(String wejscie) {
+        this.wejscie = wejscie;
+    }
+
     public Plan listaPlanow;
     private List <KlasaInfo> klasaLista = new ArrayList();
     //connect to DB and get customer list
@@ -70,7 +79,13 @@ public class Klasa {
         
     }
     
-    
+    public void funkcja(){
+        for(int i=0;i<klasaLista.size();i++){
+            if(wejscie.equals(klasaLista.get(i).klasaID)){
+                System.out.println("i "+klasaLista.get(i).klasaNazwa);
+            }
+        }
+    }
     public Klasa() {
     }
     

@@ -9,12 +9,34 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
+@ManagedBean(name="p")
+@SessionScoped
 public class Plan {
     Connection con1 = null;
     CallableStatement call= null;
     ResultSet result = null;
     Statement stmt = null;
+    public int wejscie;
+    public PlanInfo dokonca;
+
+    public PlanInfo getDokonca() {
+        return dokonca;
+    }
+
+    public void setDokonca(PlanInfo dokonca) {
+        this.dokonca = dokonca;
+    }
+
+    public int getWejscie() {
+        return wejscie;
+    }
+
+    public void setWejscie(int wejscie) {
+        this.wejscie = wejscie;
+    }
     public Boolean klik = false;
     private List <PlanInfo> planLista = new ArrayList();
     //connect to DB and get customer list
@@ -42,8 +64,24 @@ public class Plan {
         result.close();
         return planLista;
     }
-    public void Click(){
-        klik = true;
+
+    public List<PlanInfo> getPlanLista() {
+        return planLista;
+    }
+
+    public void setPlanLista(List<PlanInfo> planLista) {
+        this.planLista = planLista;
+    }
+    
+    public void szukajPlan(){
+        //for(int i=0;i<planLista.size();i++){
+            System.out.println("info "+ planLista.get(0).Id_klasa);
+            //if(wejscie == planLista.get(i).Id_klasa){
+                
+                
+               // dokonca =planLista.get(i);
+            //}
+       // }
     }
     
     public Plan() {
