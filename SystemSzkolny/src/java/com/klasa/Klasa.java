@@ -33,6 +33,20 @@ public class Klasa {
     public Plan listaPlanow;
     private List <KlasaInfo> klasaLista = new ArrayList();
     //connect to DB and get customer list
+    public String wybranaKlasa = new String();
+    
+    public String zobacz(){
+        return "/strony/zobaczObecnosci.xhtml";
+    }
+    
+    public String getWybranaKlasa() {
+        return wybranaKlasa;
+    }
+
+    public void setWybranaKlasa(String wybranaKlasa) {
+        this.wybranaKlasa = wybranaKlasa;
+    }
+
     public List getKlasaList() throws SQLException{
         klasaLista.clear();
         Labcon lc = new Labcon();
@@ -78,6 +92,14 @@ public class Klasa {
         }
         
     }
+
+    public List<KlasaInfo> getKlasaLista() {
+        return klasaLista;
+    }
+
+    public void setKlasaLista(List<KlasaInfo> klasaLista) {
+        this.klasaLista = klasaLista;
+    }
     
     public void funkcja(){
         for(int i=0;i<klasaLista.size();i++){
@@ -86,6 +108,7 @@ public class Klasa {
             }
         }
     }
+    
     public Klasa() {
     }
     
