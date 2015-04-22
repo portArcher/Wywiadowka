@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+
+      xmlns:p="http://primefaces.org/ui" >
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -26,10 +28,11 @@
             <ui:insert name="top2">
 
                 <h:form>      
-                    <h:commandButton value="Dodaj klasę" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/logowanie.xhtml"/>
-                    <h:commandButton value="Zarządzaj klasą" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/zarzadzaj_klasa.xhtml"/>
-                    <h:commandButton value="Wybierz klasę" style="background-color: #b1320f;color: white; border: 0px; width: 140px" action="/strony/wybierz_klase.xhtml"/>
-                    <h:outputText value="Witaj ktos!" style="background-color: #b1320f ;color: white; border: 0px; width: 140px"/>       
+                    <h:commandButton value="Dodaj Przedmiot" style="background-color: transparent;color: white; border: 0px; width: 140px" action="/strony/dodajPrzedmiot.xhtml"/>
+                    <h:commandButton value="Dodaj klasę" style="background-color: transparent;color: white; border: 0px; width: 140px" action="/strony/dodaj_klase.xhtml"/>
+                    <h:commandButton value="Zarządzaj klasą" style="background-color: transparent;color: white; border: 0px; width: 140px" action="/strony/zarzadzaj_klasa.xhtml"/>
+                    <h:commandButton value="Wybierz klasę" style="background-color: transparent;color: white; border: 0px; width: 140px" action="/strony/wybierz_klase.xhtml"/>
+                    <h:outputText value="Witaj ktos!" style="background-color: transparent ;color: white; border: 0px; width: 140px"/>       
                 </h:form>
 
 
@@ -42,11 +45,11 @@
 
                     <h:form>
                         <br/>
-                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/aktualnosci.png']});  " action="/strony/aktualnosci.xhtml"/>
-                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/plan_graf.png']});  " action="/strony/plan_lekcji.xhtml"/>
-                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/obecnosci_graf.png']});  " action="/strony/obecnosci.xhtml"/>
-                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/oceny-graf.png']});  " action="/strony/oceny.xhtml"/>
-                        <h:commandButton style="width: 80px; height:80px; border: 0px;background: url(#{resource['images/mojekonto_graf.jpg']});  " action="/strony/moje_konto.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/powiadomienia.png']});  " action="/strony/aktualnosci.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/plan_lekcji_new.png']});  " action="/strony/plan_lekcji.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/obecnosc.png']});  " action="/strony/obecnosci.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/dziennik.png']});  " action="/strony/oceny.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/konto.png']});  " action="/strony/moje_konto.xhtml"/>
 
 
                     </h:form>
@@ -54,898 +57,98 @@
                 </ui:insert>
             </div>
 
-
-            <div id="content" class="obecnosci">
+            <div id="content" class="left_content">
                 <ui:insert name="content">
+                    <h:form id="form1">
+                        <p:growl id="msgs" showDetail="true" />
+ 
+                        <p:dataTable id="basicDT" var="kl" value="#{d.klasaList}" style="width: 300px">
+                <f:facet name="header">
+                    Tabela
+                </f:facet>
+                <p:column headerText="Id">
+                    <h:outputText value="#{kl.klasaID}" />
+                </p:column>
+                <p:column headerText="Year">
+                    <h:outputText value="#{kl.klasaNazwa}" />
+                </p:column>
+                <p:column style="width:32px;text-align: center">
+                     <p:commandButton icon="ui-icon-search" title="Zobacz" oncomplete="PF('carDialog').show()">
+                         <f:setPropertyActionListener value="#{kl.klasaNazwa}" target="#{d.wybranaKlasa}"/>
+                    </p:commandButton>
+                </p:column>
+                           
+            </p:dataTable>
+                <h:commandButton value="zobacz" action="/strony/zobaczObecnosci.xhtml"/> 
+            </h:form>
+                    
+                    <p:dialog header="Plan Lekcji" widgetVar="PlanLekcji" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:outputPanel id="carDetail" style="text-align:center;">
+                                <!--<p:panelGrid  columns="2" rendered="#{not empty dtSelectionView.wybranaKlasa}">
 
+                                    <f:facet name="header">
+                                        <h:outputText value="PLAN LEKCJI" /> 
+                                    </f:facet>
 
-                    <h:form>
+                                    <p:column headerText="Godzina">
+                                        <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+                                    </p:column>
+ 
+                                    <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+ 
+                                    <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+                                </p:panelGrid>  -->
+                                        <!--not empty 
+                                rendered="#{d.klasaList}"
+                                        
+                                rendered="#{not empty dtSelectionView.wybranaKlasa}"        -->
+                                        
+                                    <p:dataTable var="kl" value="#{g.godzinList}">
+                                    <f:facet name="header">
+                                        PLAN LEKCJI
+                                    </f:facet>
+                                    
+                                    <p:column headerText="Godzina" style="width:50px" >
+                                        #{kl}
+                                    </p:column>
+                                       
+                                    <p:column headerText="Poniedziałek" style="width:50px">
+                                        #{p.funkcja("Poniedzialek")}               
+                                    </p:column>
+                                    <p:column headerText="Wtorek" style="width:50px">
+                                        
+                                    </p:column>
+                                    <p:column headerText="Środa" style="width:50px">
+                                        
+                                    </p:column>
+                                    <p:column headerText="Czwartek" style="width:50px">
+                                       
+                                    </p:column>
+                                    <p:column headerText="Piątek" style="width:50px">
+                                                                          
+                                    </p:column>
+                                </p:dataTable>            
+                            </p:outputPanel>
+                        </p:dialog>
+                    <!--<h:form>    
+                        
+                        <h:outputText value="Wybierz klase " />                             
+                        <br/>
+            
+                        <h:selectManyMenu value="#{d.klasaList}" >
+                            <f:selectItems var="kl" value="#{d.klasaLista}"
+                                    itemValue="#{kl.klasaID}" itemLabel="#{kl.klasaNazwa}"/>
+                        </h:selectManyMenu>
+                        
+                        <h:commandButton value="zobacz" action="/strony/zobaczObecnosci.xhtml"/>
 
-
-                        <h:panelGrid  columns="3" width="110%" style="float: top; font-size: 20px">
-
-                            <h:commandButton styleClass="cofnij" style="float: left; width: 43px; height: 40px; border: 0px" action="index.xhtml"/>
-                            <h:outputText value="Tydzień 1 : 01-05.09.2015" style="float: left; text-align: center;"/> 
-                            <h:commandButton styleClass="dalej" style="float: left; width: 43px; height: 40px; border: 0px" action="index.xhtml"/>
-
-                        </h:panelGrid>
-
-                        <h:panelGrid columns="1" style="float: left; font-size: 16px">
-                            <h:outputText value="Klasa "/>
-
-                            <f:view>
-                                <h:form>
-                                    <h:dataTable value="#{bazaUczniow.uczniowie}" var="uczen">
-                                        <h:column >    				
-                                            <f:facet name="header">Klasa</f:facet>    				
-                                                #{uczen.imie}
-                                        </h:column>
-                                    </h:dataTable>
-                                </h:form>
-                            </f:view>
-
-
-
-
-
-                        </h:panelGrid>
-
-                       
-
-                        <h:panelGrid columns="2" style="float: left; font-size: 16px">
-                            |
-                            <h:outputLabel value="Poniedziałek " />
-                            |
-                            <h:panelGroup>
-
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>  
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>                            
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>                            
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                        </h:panelGrid>
-
-                        <h:panelGrid columns="2" style="float: left; font-size: 16px">
-                            |
-                            <h:outputLabel value="Wtorek " />
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>  
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>                            
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>                            
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                        </h:panelGrid>
-
-                        <h:panelGrid columns="2" style="float: left; font-size: 16px">
-                            |
-                            <h:outputLabel value="Środa " />
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>  
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>                            
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>                            
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                        </h:panelGrid>
-
-                        <h:panelGrid columns="2" style="float: left; font-size: 16px">
-                            |
-                            <h:outputLabel value="Czwartek" />
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>  
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>                            
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>                            
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                        </h:panelGrid>
-
-                        <h:panelGrid columns="2" style="float: left; font-size: 16px">
-                            |
-                            <h:outputLabel value="Piątek" />
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>  
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>                            
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>                            
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                            |
-                            <h:panelGroup>
-                                <h:selectManyCheckbox value="">
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                    <f:selectItem />
-                                </h:selectManyCheckbox>
-                            </h:panelGroup>
-                        </h:panelGrid>
-
-                    </h:form>
-
-
+                     </h:form>-->
                 </ui:insert>
             </div>
         </div>

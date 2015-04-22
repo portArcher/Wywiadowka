@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+
+      xmlns:p="http://primefaces.org/ui" >
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -57,21 +59,96 @@
 
             <div id="content" class="left_content">
                 <ui:insert name="content">
-                    <h:form>    
+                    <h:form id="form1">
+                        <p:growl id="msgs" showDetail="true" />
+ 
+                        <p:dataTable id="basicDT" var="kl" value="#{d.klasaList}" style="width: 300px">
+                <f:facet name="header">
+                    Tabela
+                </f:facet>
+                <p:column headerText="Id">
+                    <h:outputText value="#{kl.klasaID}" />
+                </p:column>
+                <p:column headerText="Year">
+                    <h:outputText value="#{kl.klasaNazwa}" />
+                </p:column>
+                <p:column style="width:32px;text-align: center">
+                     <p:commandButton icon="ui-icon-search" title="Zobacz" oncomplete="PF('carDialog').show()">
+                         <f:setPropertyActionListener value="#{kl.klasaNazwa}" target="#{d.wybranaKlasa}"/>
+                    </p:commandButton>
+                </p:column>
+                           
+            </p:dataTable>
+                <h:commandButton value="zobacz" action="/strony/zobaczObecnosci.xhtml"/> 
+            </h:form>
+                    
+                    <p:dialog header="Plan Lekcji" widgetVar="PlanLekcji" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:outputPanel id="carDetail" style="text-align:center;">
+                                <!--<p:panelGrid  columns="2" rendered="#{not empty dtSelectionView.wybranaKlasa}">
+
+                                    <f:facet name="header">
+                                        <h:outputText value="PLAN LEKCJI" /> 
+                                    </f:facet>
+
+                                    <p:column headerText="Godzina">
+                                        <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+                                    </p:column>
+ 
+                                    <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+ 
+                                    <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+                                </p:panelGrid>  -->
+                                        <!--not empty 
+                                rendered="#{d.klasaList}"
+                                        
+                                rendered="#{not empty dtSelectionView.wybranaKlasa}"        -->
+                                        
+                                    <p:dataTable var="kl" value="#{g.godzinList}">
+                                    <f:facet name="header">
+                                        PLAN LEKCJI
+                                    </f:facet>
+                                    
+                                    <p:column headerText="Godzina" style="width:50px" >
+                                        #{kl}
+                                    </p:column>
+                                       
+                                    <p:column headerText="Poniedziałek" style="width:50px">
+                                        #{p.funkcja("Poniedzialek")}               
+                                    </p:column>
+                                    <p:column headerText="Wtorek" style="width:50px">
+                                        
+                                    </p:column>
+                                    <p:column headerText="Środa" style="width:50px">
+                                        
+                                    </p:column>
+                                    <p:column headerText="Czwartek" style="width:50px">
+                                       
+                                    </p:column>
+                                    <p:column headerText="Piątek" style="width:50px">
+                                                                          
+                                    </p:column>
+                                </p:dataTable>            
+                            </p:outputPanel>
+                        </p:dialog>
+                    <!--<h:form>    
                         
                         <h:outputText value="Wybierz klase " />                             
                         <br/>
             
-                        <h:selectOneListbox value="#{d.klasaList}" >
-                                <f:selectItems var="kl" value="#{d.klasaLista}"
+                        <h:selectManyMenu value="#{d.klasaList}" >
+                            <f:selectItems var="kl" value="#{d.klasaLista}"
                                     itemValue="#{kl.klasaID}" itemLabel="#{kl.klasaNazwa}"/>
-                            </h:selectOneListbox>
+                        </h:selectManyMenu>
                         
-                       
-                        
-                        <h:commandButton value="zobacz" action="/strony/zobaczObecnosci"/>
+                        <h:commandButton value="zobacz" action="/strony/zobaczObecnosci.xhtml"/>
 
-                     </h:form>
+                     </h:form>-->
                 </ui:insert>
             </div>
         </div>
