@@ -133,24 +133,23 @@
                                         
                                 rendered="#{not empty dtSelectionView.wybranaKlasa}"        -->
                                         
-                                        <p:dataTable var="kl" value="#{p.planList}">
-
+                                    <p:dataTable var="kl" value="#{g.godzinList}">
                                     <f:facet name="header">
                                         PLAN LEKCJI
                                     </f:facet>
                                     
                                     <p:column headerText="Godzina" style="width:50px" >
-                                        <h:outputText value="#{g.godzinList}"/>
+                                        #{kl}
                                     </p:column>
                                        
                                     <p:column headerText="Poniedziałek" style="width:50px">
-                                        <h:outputText value="#{kl.id_dzien}"></h:outputText>                
+                                        #{p.funkcja("Poniedzialek")}               
                                     </p:column>
                                     <p:column headerText="Wtorek" style="width:50px">
-                                        <h:outputText value="#{kl.id_przedmiot}"></h:outputText>
+                                        
                                     </p:column>
                                     <p:column headerText="Środa" style="width:50px">
-                                        <h:outputText value="#{kl.id_klasa}"></h:outputText>
+                                        
                                     </p:column>
                                     <p:column headerText="Czwartek" style="width:50px">
                                        
