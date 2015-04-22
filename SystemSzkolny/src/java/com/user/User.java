@@ -16,7 +16,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-@ManagedBean
+@ManagedBean(name="u")
 @RequestScoped
 public class User {
     Connection con1 = null;
@@ -24,9 +24,39 @@ public class User {
     ResultSet result = null;
     Statement stmt = null;
 
-    private List <User.UserInfo> userLista = new ArrayList();
+    /**
+     *
+     */
+    public String wybranyUczenImie = new String();
+    public String wybranyUczenNazwisko = new String();
+
+    public String getWybranyUczenImie() {
+        return wybranyUczenImie;
+    }
+
+    public void setWybranyUczenImie(String wybranyUczenImie) {
+        this.wybranyUczenImie = wybranyUczenImie;
+    }
+
+    public String getWybranyUczenNazwisko() {
+        return wybranyUczenNazwisko;
+    }
+
+    public void setWybranyUczenNazwisko(String wybranyUczenNazwisko) {
+        this.wybranyUczenNazwisko = wybranyUczenNazwisko;
+    }
+
+    public List<UserInfo> getUserLista() {
+        return userLista;
+    }
+
+    public void setUserLista(List<UserInfo> userLista) {
+        this.userLista = userLista;
+    }
+
+    private List <UserInfo> userLista = new ArrayList();
     //connect to DB and get customer list
-    public List getKlasaList() throws SQLException{
+    public List getUserList() throws SQLException{
         userLista.clear();
         LabconUser lc = new LabconUser();
         con1 = lc.getLocalConnection();
@@ -34,16 +64,15 @@ public class User {
         String sql = "USE 686_szkola";
         stmt.executeQuery(sql); 
         
-        String strSql="select ID, Imie from Uzytkownicy";
+        String strSql="select ID, Imie, Nazwisko from Uzytkownicy";
         //System.err.println("****"+strSql);
         result=stmt.executeQuery(strSql);
         
         while(result.next()){
-            User.UserInfo nowa = new User.UserInfo();
+            UserInfo nowa = new UserInfo();
             nowa.setIdUser(result.getString("Id"));
-            nowa.setHaslo(result.getString("Haslo"));
-            nowa.setImie(result.getString("Imie"));
-            
+            nowa.setNazwisko(result.getString("Nazwisko"));
+            nowa.setImie(result.getString("Imie"));        
             userLista.add(nowa);
         }
         result.close();
@@ -88,6 +117,7 @@ public class User {
         }
     
     public User() {
+        
     }
     
 }

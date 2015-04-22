@@ -34,6 +34,15 @@ public class Klasa {
     private List <KlasaInfo> klasaLista = new ArrayList();
     //connect to DB and get customer list
     public String wybranaKlasa = new String();
+    public String nazwaWybranejKlasy = new String();
+
+    public String getNazwaWybranejKlasy() {
+        return nazwaWybranejKlasy;
+    }
+
+    public void setNazwaWybranejKlasy(String nazwaWybranejKlasy) {
+        this.nazwaWybranejKlasy = nazwaWybranejKlasy;
+    }
     
     public String zobacz(){
         return "/strony/zobaczObecnosci.xhtml";
