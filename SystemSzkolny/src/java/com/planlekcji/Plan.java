@@ -125,7 +125,9 @@ public class Plan {
             for(int i=0;i<7;i++){
                 czy=false;
                 for(int j=0;j<planLista.size();j++){
-                    if(planLista.get(j).Id_dzien.equals("0")&&planLista.get(j).Id_godzina.equals(Integer.toString(i))&&planLista.get(j).Id_klasa.equals(Integer.toString(wejscie))){
+                    
+                    System.out.println("WEJSCIE: "+wejscie);
+                    if(planLista.get(j).Id_dzien.equals("0")&&planLista.get(j).Id_godzina.equals(Integer.toString(i))){
                         przedTab.set(i, planLista.get(j).Id_przedmiot);
                         czy=true;
                     }
