@@ -20,9 +20,9 @@ Connection con1 = null;
     ResultSet result = null;
     Statement stmt = null;
     
-    private List <String> godzinLista = new ArrayList();
-    //connect to DB and get customer list
-    public List getGodzinList() throws SQLException{
+    public List <String> godzinLista = new ArrayList();
+
+    public List<String> getGodzinLista() throws SQLException{
         godzinLista.clear();
         Labcon lc = new Labcon();
         con1 = lc.getLocalConnection();
@@ -30,7 +30,7 @@ Connection con1 = null;
         String sql = "USE 686_szkola";
         stmt.executeQuery(sql); 
         
-        String strSql="select Godzina from Godziny";
+        String strSql="select Id, Godzina from Godziny";
         //System.err.println("****"+strSql);
         result=stmt.executeQuery(strSql);
         
@@ -40,9 +40,15 @@ Connection con1 = null;
             godzinLista.add(nowa);
         }
         result.close();
-        System.out.println(""+godzinLista.get(0));
+        //System.out.println(""+godzinLista.get(0));
         return godzinLista;
     }
+
+    public void setGodzinLista(List<String> godzinLista) {
+        this.godzinLista = godzinLista;
+    }
+    //connect to DB and get customer list
+    
     public Godziny() {
     }
     

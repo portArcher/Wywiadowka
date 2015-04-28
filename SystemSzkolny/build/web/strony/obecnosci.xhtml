@@ -58,65 +58,201 @@
             <div id="content" class="left_content">
                 <ui:insert name="content">
                     <h:form id="form1">
-                        <p:growl id="msgs" showDetail="true" />
- 
-                        <p:dataTable id="basicDT" var="kl" value="#{d.klasaList}" style="width: 300px">
-                <f:facet name="header">
-                    Wybierz Klasę
-                </f:facet>
-                <p:column headerText="Nazwa Klasy">
-                    <h:outputText value="#{kl.klasaNazwa}" />
-                </p:column>
-                <p:column style="width:32px;text-align: center">
-                    <p:commandButton update=":form1:carDetail" icon="ui-icon-search" title="Zobacz" oncomplete="PF('PlanLekcji').show()">
-                         <f:setPropertyActionListener value="#{kl.klasaID}" target="#{d.wybranaKlasa}"/>
-                         <f:setPropertyActionListener value="#{kl.klasaNazwa}" target="#{d.nazwaWybranejKlasy}"/>
-                    </p:commandButton>
-                </p:column>
-                           
-                                        
-                        <p:dialog header="Obecności" widgetVar="PlanLekcji" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="80%">
-                            <p:outputPanel id="carDetail" style="text-align:center;">                                   
-                                <p:dataTable var="uczen" value="#{u.userList}">
+                        <center>
+                            <p:growl id="growl" showDetail="true" sticky="true" />
+                            <br/><br/>
+                            <h:outputText value="Obecności" style="font-size: 50px; font-family: fantasy"/><br/><br/>
+                            <p:separator/>
+                            <br/><br/>
+                            <p:commandButton update=":form1:klasyDodaj" value="DODAJ" title="Zobacz" oncomplete="PF('KlasyDodaj').show()" style="width: 200px; height: 70px; border-radius: 30px; "/>
+                            <p:commandButton update=":form1:klasyZobacz" value="ZOBACZ" title="Zobacz nieobecnosci" oncomplete="PF('KlasyZobacz').show()" style="width: 200px; height: 70px; border-radius: 30px"/>
+                            <p:commandButton update=":form1:klasyUsun" value="USPRAWIEDLIW" title="Usprawiedliw nieobecność" oncomplete="PF('KlasyUsun').show()" style="width: 200px; height: 70px; border-radius: 30px"/>
+
+                        </center>
+
+                        <p:dialog header="Klasy" widgetVar="KlasyZobacz" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="50%">
+                            <p:outputPanel id="klasyZobacz" style="text-align:center;">                                   
+                                <p:dataTable var="kl" value="#{d.klasaList}">
+                                    <f:facet name="header">
+                                        Wybierz klasę
+                                    </f:facet>
+                                    <p:column headerText="Nazwa Klasy">
+                                        <h:outputText value="#{kl.klasaNazwa}" />
+                                    </p:column>
+                                    <p:column style="width:100px;text-align: center">
+                                        <p:commandButton update=":form1:carDetail" value="wybierz" title="Zobacz" oncomplete="PF('KlasyZobacz').hide(); PF('ListaUczniow').show()">
+                                            <f:setPropertyActionListener value="#{kl.klasaID}" target="#{d.wybranaKlasa}"/>
+                                            <f:setPropertyActionListener value="#{kl.klasaNazwa}" target="#{d.nazwaWybranejKlasy}"/>
+                                        </p:commandButton>
+                                    </p:column>
+
+                                </p:dataTable>            
+                            </p:outputPanel>
+                        </p:dialog>
+
+                        <p:dialog header="Klasy" widgetVar="KlasyDodaj" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="50%">
+                            <p:outputPanel id="klasyDodaj" style="text-align:center;">                                   
+                                <p:dataTable var="kl" value="#{d.klasaList}">
+                                    <f:facet name="header">
+                                        Wybierz klasę
+                                    </f:facet>
+                                    <p:column headerText="Nazwa Klasy">
+                                        <h:outputText value="#{kl.klasaNazwa}" />
+                                    </p:column>
+                                    <p:column style="width:100px;text-align: center">
+                                        <p:commandButton update=":form1:dodajNieobecnosc" value="wybierz" title="Zobacz" oncomplete="PF('KlasyDodaj').hide(); PF('ListaUczniowDodajNieobecnosc').show()">
+                                            <f:setPropertyActionListener value="#{kl.klasaID}" target="#{d.wybranaKlasa}"/>
+                                            <f:setPropertyActionListener value="#{kl.klasaNazwa}" target="#{d.nazwaWybranejKlasy}"/>
+                                        </p:commandButton>
+                                    </p:column>
+
+                                </p:dataTable>            
+                            </p:outputPanel>
+                        </p:dialog>
+
+                        <p:dialog header="Klasy" widgetVar="KlasyUsun" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="50%">
+                            <p:outputPanel id="klasyUsun" style="text-align:center;">                                   
+                                <p:dataTable var="kl" value="#{d.klasaList}">
+                                    <f:facet name="header">
+                                        Wybierz klasę
+                                    </f:facet>
+                                    <p:column headerText="Nazwa Klasy">
+                                        <h:outputText value="#{kl.klasaNazwa}" />
+                                    </p:column>
+                                    <p:column style="width:100px;text-align: center">
+                                        <p:commandButton update=":form1:usun" value="wybierz" title="Zobacz" oncomplete="PF('KlasyUsun').hide(); PF('ListaUczniowUsun').show()">
+                                            <f:setPropertyActionListener value="#{kl.klasaID}" target="#{d.wybranaKlasa}"/>
+                                            <f:setPropertyActionListener value="#{kl.klasaNazwa}" target="#{d.nazwaWybranejKlasy}"/>
+                                        </p:commandButton>
+                                    </p:column>
+
+                                </p:dataTable>            
+                            </p:outputPanel>
+                        </p:dialog>
+
+                        <p:dialog header="Obecności" widgetVar="ListaUczniowUsun" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="50%">
+                            <p:outputPanel id="usun" style="text-align:center;">                                   
+                                <p:dataTable var="ucz" value="#{d.userListwKlasie}">
                                     <f:facet name="header">
                                         Lista uczniów klasy #{d.nazwaWybranejKlasy}
                                     </f:facet>
                                     
                                     <p:column headerText="Imie" style="width:50px" >
-                                        <h:outputText value="#{uczen.imie}"/>
+                                        <h:outputText value="#{ucz.imie}"/>
                                     </p:column>
-                                       
+
                                     <p:column headerText="Nazwisko" style="width:50px">
-                                        <h:outputText value="#{uczen.nazwisko}"/>     
+                                        <h:outputText value="#{ucz.nazwisko}"/>     
                                     </p:column>
                                     <p:column headerText="Wybierz Ucznia" style="width:50px">
-                                        <p:commandButton update=":form1:uczenDetail" value="Zobacz nieobecności" oncomplete="PF('PlanLekcji').hide(); PF('ObecnosciUcznia').show()">
-                                            <f:setPropertyActionListener value="#{uczen.imie}" target="#{u.wybranyUczenImie}"/>
-                                            <f:setPropertyActionListener value="#{uczen.nazwisko}" target="#{u.wybranyUczenNazwisko}"/>
-                                       </p:commandButton>
+                                        <p:commandButton update=":form1:usprawiedliw" value="Usprawiedliw" oncomplete="PF('ListaUczniowUsun').hide(); PF('usprawiedliwObecnosci').show()">
+                                            <f:setPropertyActionListener value="#{ucz.imie}" target="#{u.wybranyUczenImie}"/>
+                                            <f:setPropertyActionListener value="#{ucz.nazwisko}" target="#{u.wybranyUczenNazwisko}"/>
+                                            <f:setPropertyActionListener value="#{ucz.idUser}" target="#{o.wybranyID}"/>                 
+                                        </p:commandButton>
                                     </p:column>
-                                    
+
                                 </p:dataTable>            
                             </p:outputPanel>
                         </p:dialog>
-                        
-                        <p:dialog header="Obecności ucznia" widgetVar="ObecnosciUcznia" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="80%" >
-                            <p:outputPanel id="uczenDetail" style="text-align:center;">                                   
-                                <p:dataTable var="uczen" value="">
+
+                        <p:dialog header="Obecności" widgetVar="ListaUczniow" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="50%">
+                            <p:outputPanel id="carDetail" style="text-align:center;">                                   
+                                <p:dataTable var="ucz" value="#{d.userListwKlasie}">
                                     <f:facet name="header">
-                                        #{u.wybranyUczenImie} #{u.wybranyUczenNazwisko} 
+                                        Lista uczniów klasy #{d.nazwaWybranejKlasy}
+                                    </f:facet>
+                                   
+                                    <p:column headerText="Imie" style="width:50px" >
+                                        <h:outputText value="#{ucz.imie}"/>
+                                    </p:column>
+
+                                    <p:column headerText="Nazwisko" style="width:50px">
+                                        <h:outputText value="#{ucz.nazwisko}"/>     
+                                    </p:column>
+                                    <p:column headerText="Wybierz Ucznia" style="width:50px">
+                                        <p:commandButton update=":form1:zobacz" value="Zobacz nieobecności" oncomplete="PF('ListaUczniow').hide(); PF('zobaczObecnosci').show()">
+                                            <f:setPropertyActionListener value="#{ucz.imie}" target="#{u.wybranyUczenImie}"/>
+                                            <f:setPropertyActionListener value="#{ucz.nazwisko}" target="#{u.wybranyUczenNazwisko}"/>
+                                            <f:setPropertyActionListener value="#{ucz.idUser}" target="#{o.wybranyID}"/>                 
+                                        </p:commandButton>
+                                    </p:column>
+
+                                </p:dataTable>            
+                            </p:outputPanel>
+                        </p:dialog>
+
+
+                        <!-- dialog z lista uczniiow danej klasy i dodawaniem nieobecnosc -->
+
+                        <p:dialog header="Dodaj nieobecnosc" widgetVar="ListaUczniowDodajNieobecnosc" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="80%">
+                            <p:outputPanel id="dodajNieobecnosc" style="text-align:center;">                                   
+                                <p:dataTable var="ucz" value="#{d.userListwKlasie}">
+                                    <f:facet name="header">
+                                        Lista uczniów klasy #{d.nazwaWybranejKlasy}
                                     </f:facet>
                                     
-                                    <p:column headerText="Kiedy nieobecny">
-                                        <h:outputText value=""/>
+                                    <p:column headerText="Imie" style="width:50px" >
+                                        <h:outputText value="#{ucz.imie}"/>
                                     </p:column>
-                                       
-                                    <p:column headerText="Usprawiedliw godziny">
-                                        <h:outputText value=""/>     
-                                    </p:column>      
-                                </p:dataTable>            
+
+                                    <p:column headerText="Nazwisko" style="width:50px" >
+                                        <h:outputText value="#{ucz.nazwisko}"/>     
+                                    </p:column>
+
+                                    <p:column headerText="Dodaj Nieobecnosc" style="width:50px">
+                                        <p:commandButton value="dodaj" actionListener="#{o.dodajObecnosc(ucz.idUser)}" update=":form1:growl" />    
+                                    </p:column>
+
+                                </p:dataTable> 
+                                <p:selectOneMenu value="#{o.wybranaGodzina}" style="width:125px" >
+                                    <f:selectItem itemLabel="Wybierz godzinę" itemValue="" />
+                                    <f:selectItems value="#{g.godzinLista}" />
+                                </p:selectOneMenu>     
                             </p:outputPanel>
                         </p:dialog>
+
+                        <p:dialog header="Obecności ucznia" widgetVar="zobaczObecnosci" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="50%" >
+                            <p:outputPanel id="zobacz" style="text-align:center;">                                   
+                                <p:dataTable var="ob" value="#{o.listaObecnosci}">
+                                    <f:facet name="header">
+                                        #{u.wybranyUczenImie} #{u.wybranyUczenNazwisko}
+                                    </f:facet>
+                                    <p:column headerText="Kiedy nieobecny">
+                                        #{o.zwrocNazweGodziny(ob.ID)}
+                                    </p:column>
+                                </p:dataTable>     
+                                <p:commandButton value="Zamknij" oncomplete="PF('zobaczObecnosci').hide()"/> 
+                            </p:outputPanel>
+                        </p:dialog>
+
+                        <p:dialog header="Obecności ucznia" widgetVar="usprawiedliwObecnosci" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="80%" >
+                            <p:outputPanel id="usprawiedliw" style="text-align:center;">                                   
+                                <p:dataTable var="ob2" value="#{o.listaID}">
+                                    <f:facet name="header">
+                                        #{u.wybranyUczenImie} #{u.wybranyUczenNazwisko} #{o.wybranyID}
+                                    </f:facet>
+                                    <p:column headerText="Kiedy nieobecny">
+                                       <p:commandButton value="#{ob2.ID}" action="#{o.usNieobecnosc(ob2.ID)}" process="@this"/> 
+                                    </p:column>
+                                    <p:column headerText="Kiedy nieobecny">
+                                       #{ob2.data}
+                                    </p:column>
+                                    <p:column headerText="Kiedy nieobecny">
+                                        #{ob2.godzina}      
+                                    </p:column>
+                                    <p:column headerText="Kiedy nieobecny"> 
+                                        <p:commandButton value="#{ob2.ID}" actionListener="#{o.usNieobecnosc(ob2.ID)}" process="@this"> 
+                                             
+                                        </p:commandButton>
+                                    </p:column>
+  
+                                </p:dataTable>     
+                            </p:outputPanel>
+                        </p:dialog>
+
+
+
                     </h:form>
                 </ui:insert>
             </div>

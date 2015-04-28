@@ -59,7 +59,10 @@
             
             <div id="content" class="left_content">
                 <ui:insert name="content">
-                    <h:form id="form1">
+                    <h:form>
+                        <center>
+                    <f:view>
+                    <html>
                         <head>
                             <link rel="stylesheet" type="text/css" href="css/table-style.css" />
                         </head>
@@ -84,8 +87,8 @@
                         </h:column>
                         </h:dataTable>
                         -->
-                      
-                        <p:dataTable id="radioDT" var="kl" value="#{d.klasaList}" style="width:300px" >
+                        <h:form id="form1">
+                            <p:dataTable id="radioDT" var="kl" value="#{d.klasaList}" rowKey="#{kl}" style="width:300px" >
                             <f:facet name="header">
                             </f:facet>
                              <p:column headerText="Id" style="width:30px">
@@ -94,28 +97,14 @@
                             <p:column headerText="Nazwa Klasy">
                                 <h:outputText value="#{kl.klasaNazwa}" />
                             </p:column>
-                            <p:column style="width:32px;text-align: center">
-                                    <p:commandButton update=":form1:carDetail" icon="ui-icon-search" title="Zobacz" oncomplete="PF('PlanLekcji').show()">
-                                        <f:setPropertyActionListener value="#{kl.klasaID}" target="#{p.wejscie}"/>
-                                    </p:commandButton>
-                            </p:column>
+                            <f:facet name="footer">
+                                <h:outputText value="Wpisz ID klasy: "></h:outputText>
+                                <h:inputText value="#{p.wejscie}"></h:inputText>
+                                <p:commandButton process="radioDT" icon="ui-icon-search" value="Wyświetl" action="#{p.szukajPlan()}" oncomplete="PF('PlanLekcji').show();"/>
+                            </f:facet>
                         </p:dataTable>
-                            <!--<p:dataTable id="basicDT" var="kl" value="#{d.klasaList}" style="width: 300px">
-                                <f:facet name="header">
-                                    Wybierz Klasę
-                                </f:facet>
-                                <p:column headerText="Id Klasy">
-                                    <h:outputText value="#{kl.klasaID}"/>
-                                </p:column>
-                                <p:column headerText="Nazwa Klasy">
-                                    <h:outputText value="#{kl.klasaNazwa}"/>
-                                </p:column>
-                                <p:column style="width:32px;text-align: center">
-                                    <p:commandButton update=":form1:carDetail" icon="ui-icon-search" title="Zobacz" oncomplete="PF('PlanLekcji').show()">
-                                        <f:setPropertyActionListener value="#{kl.klasaID}" target="#{d.wybranaKlasa}"/>
-                                    </p:commandButton>
-                                </p:column>
-                            </p:dataTable>-->
+                        
+                            
                         <!--Okienko wyskakujące-->
                         <p:dialog header="Plan Lekcji" widgetVar="PlanLekcji" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                             <p:outputPanel id="carDetail" style="text-align:center;">
@@ -144,7 +133,7 @@
                                         
                                 rendered="#{not empty dtSelectionView.wybranaKlasa}"        -->
                                         
-                                    <p:dataTable var="kl" value="#{g.godzinList}">
+                                    <p:dataTable var="kl" value="#{g.godzinLista}">
                                     <f:facet name="header">
                                         PLAN LEKCJI
                                     </f:facet>
@@ -171,6 +160,10 @@
                                 </p:dataTable>            
                             </p:outputPanel>
                         </p:dialog>
+                        </h:form>
+                    </html>
+                    </f:view>
+                        </center>
                     </h:form>
              </ui:insert>
             </div>

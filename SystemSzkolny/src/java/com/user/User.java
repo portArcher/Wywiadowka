@@ -6,6 +6,7 @@
 package com.user;
 
 
+import com.klasa.Labcon;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,7 +19,7 @@ import javax.faces.bean.RequestScoped;
 
 @ManagedBean(name="u")
 @RequestScoped
-public class User {
+public class User{
     Connection con1 = null;
     CallableStatement call= null;
     ResultSet result = null;
@@ -29,7 +30,16 @@ public class User {
      */
     public String wybranyUczenImie = new String();
     public String wybranyUczenNazwisko = new String();
+    public int wybranyUczenId;
 
+    public int getWybranyUczenId() {
+        return wybranyUczenId;
+    }
+
+    public void setWybranyUczenId(int wybranyUczenId) {
+        this.wybranyUczenId = wybranyUczenId;
+    }
+    
     public String getWybranyUczenImie() {
         return wybranyUczenImie;
     }
@@ -58,13 +68,14 @@ public class User {
     //connect to DB and get customer list
     public List getUserList() throws SQLException{
         userLista.clear();
-        LabconUser lc = new LabconUser();
-        con1 = lc.getLocalConnection();
-        stmt=con1.createStatement();
-        String sql = "USE 686_szkola";
-        stmt.executeQuery(sql); 
+        Labcon lc = new Labcon();
         
-        String strSql="select ID, Imie, Nazwisko from Uzytkownicy";
+        con1 = lc.getLocalConnection();
+        String sql = "USE 686_szkola";
+        stmt=con1.createStatement();
+        
+        stmt.executeQuery(sql); 
+        String strSql="select ID, Imie, Id_klasa, Nazwisko from Uzytkownicy";
         //System.err.println("****"+strSql);
         result=stmt.executeQuery(strSql);
         
@@ -76,11 +87,13 @@ public class User {
             userLista.add(nowa);
         }
         result.close();
-        return userLista;
-    
+         con1.close();
+        return userLista;  
     }
+    
+  
     public class UserInfo {
-            String imie, nazwisko, haslo, idUser;
+            String imie, nazwisko, haslo, IdUser;
 
         public String getNazwisko() {
             return nazwisko;
@@ -91,11 +104,11 @@ public class User {
         }
 
         public String getIdUser() {
-            return idUser;
+            return IdUser;
         }
 
-        public void setIdUser(String idUser) {
-            this.idUser = idUser;
+        public void setIdUser(String IdUser) {
+            this.IdUser = IdUser;
         }
             
         public String getImie() {

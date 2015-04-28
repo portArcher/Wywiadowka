@@ -94,8 +94,6 @@ public class Plan {
         stmt1.executeQuery(sql);
         ResultSet rs1 = null;
         
-        
-        
         for(int i=0;i<planLista.size();i++){
             System.out.println("jeszcze dziala"+i);
             rs1=stmt1.executeQuery("SELECT Nazwa from Przedmioty where id="+planLista.get(i).Id_przedmiot);
@@ -125,9 +123,7 @@ public class Plan {
             for(int i=0;i<7;i++){
                 czy=false;
                 for(int j=0;j<planLista.size();j++){
-                    
-                    System.out.println("WEJSCIE: "+wejscie);
-                    if(planLista.get(j).Id_dzien.equals("0")&&planLista.get(j).Id_godzina.equals(Integer.toString(i))){
+                    if(planLista.get(j).Id_dzien.equals("0")&&planLista.get(j).Id_godzina.equals(Integer.toString(i))&&planLista.get(j).Id_klasa.equals(Integer.toString(wejscie))){
                         przedTab.set(i, planLista.get(j).Id_przedmiot);
                         czy=true;
                     }
