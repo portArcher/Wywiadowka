@@ -2,6 +2,7 @@
 package com.planlekcji;
 
 import com.klasa.Labcon;
+import java.io.Serializable;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,8 +17,8 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name="p")
 @SessionScoped
-public class Plan {
-    Connection con1 = null;
+public class Plan{
+    transient Connection con1 = null;
     CallableStatement call= null;
     ResultSet result = null;
     Statement stmt = null;
@@ -25,7 +26,7 @@ public class Plan {
     public int wejscie;
     public PlanInfo dokonca;
     int przedmiot;
-    int iterator=0;
+    int iterator=0,iteratorwt=0,iteratorsr=0,iteratorczw=0,iteratorpt=0;
 
     public int getPrzedmiot() {
         return przedmiot;
@@ -53,6 +54,10 @@ public class Plan {
     public Boolean klik = false;
     private List <PlanInfo> planLista = new ArrayList();
     private List<String> przedTab = new ArrayList();
+    private List<String> przedTabwt = new ArrayList();
+    private List<String> przedTabsr = new ArrayList();
+    private List<String> przedTabczw = new ArrayList();
+    private List<String> przedTabpt = new ArrayList();
     
     //connect to DB and get customer list
     public List getPlanList() throws SQLException{
@@ -65,7 +70,7 @@ public class Plan {
         
         stmt.executeQuery(sql); 
         
-        String strSql="select ID, Id_przedmiot, Id_godzina, Id_dzien, Id_klasa from PlanLekcji where Id_klasa="+wejscie+" and Id_dzien=0 ORDER BY Id_godzina";
+        String strSql="select ID, Id_przedmiot, Id_godzina, Id_dzien, Id_klasa from PlanLekcji ORDER BY Id_godzina";
         //System.err.println("****"+strSql);
         result=stmt.executeQuery(strSql);
         
@@ -95,7 +100,6 @@ public class Plan {
         ResultSet rs1 = null;
         
         for(int i=0;i<planLista.size();i++){
-            System.out.println("jeszcze dziala"+i);
             rs1=stmt1.executeQuery("SELECT Nazwa from Przedmioty where id="+planLista.get(i).Id_przedmiot);
             rs1.next();
             planLista.get(i).Id_przedmiot=rs1.getString("Nazwa");
@@ -107,47 +111,126 @@ public class Plan {
         stmt1.close();
         con1.close();
         return planLista;
-    }
+    } //<!--#{p.funkcja("Poniedzialek")}--> 
+    boolean zmiana = true;
     public String funkcja(String x){
-        for(int i=0;i<7;i++){
-            przedTab.add(" ");
+        if(zmiana==true){
+            for(int i=0;i<7;i++){
+                przedTab.add(" ");
+                przedTabwt.add(" ");
+                przedTabsr.add(" ");
+                przedTabczw.add(" ");
+                przedTabpt.add(" ");
+            }
+            zmiana = false;
         }
+        for(int i = 0;i<7;i++){
+            przedTab.set(i," ");
+            przedTabwt.set(i," ");
+            przedTabsr.set(i," ");
+            przedTabczw.set(i," ");
+            przedTabpt.set(i," ");
+        }
+        
         try {
             getPlanList();
         } catch (SQLException ex) {
             Logger.getLogger(Plan.class.getName()).log(Level.SEVERE, null, ex);
         }
-        iterator++;
-        boolean czy;
         if(x.equals("Poniedzialek")){
+            System.out.println("jeszcze WEJSCIE"+wejscie);
+            
+        iterator++;
+        if(iterator==8){
+            iterator=1;
+        }
             for(int i=0;i<7;i++){
-                czy=false;
+                //czy=false;
                 for(int j=0;j<planLista.size();j++){
                     if(planLista.get(j).Id_dzien.equals("0")&&planLista.get(j).Id_godzina.equals(Integer.toString(i))&&planLista.get(j).Id_klasa.equals(Integer.toString(wejscie))){
                         przedTab.set(i, planLista.get(j).Id_przedmiot);
-                        czy=true;
+                        //czy=true;
                     }
-                    if(j==planLista.size()-1&&czy==false){
+                    System.out.println("Lista: idDzien"+przedTab.get(i));
+                    
+                    /*if(j==planLista.size()-1&&czy==false){
                         przedTab.set(i, " ");
-                    }
+                    }*/
+                    //przedTab.set(i, planLista.get(j).Id_przedmiot);
                 }
             }
         }
-        /*if(x.equals("Wtorek")){
+        
+        if(x.equals("Wtorek")){
+                    iteratorwt++;
+        if(iteratorwt==8){
+            iteratorwt=1;
+        }
             for(int i=0;i<7;i++){
-                czy=false;
+                //czy=false;
+                
+
                 for(int j=0;j<planLista.size();j++){
                     if(planLista.get(j).Id_dzien.equals("1")&&planLista.get(j).Id_godzina.equals(Integer.toString(i))&&planLista.get(j).Id_klasa.equals(Integer.toString(wejscie))){
-                        przedTab.set(i, planLista.get(j).Id_przedmiot);
-                        czy=true;
-                    }
-                    if(j==planLista.size()-1&&czy==false){
-                        przedTab.set(i, " ");
+                        przedTabwt.set(i, planLista.get(j).Id_przedmiot);
+                      //  czy=true;
                     }
                 }
             }
-        }*/
-        //System.out.println("SZUKAM"+(iterator-1)); //zerować iteraor zrobić aby nie dodawalo ale zmienialo do listy 
+            return przedTabwt.get(iteratorwt-1);
+        }
+                if(x.equals("Sroda")){
+                    
+        iteratorsr++;
+        if(iteratorsr==8){
+            iteratorsr=1;
+        }
+            for(int i=0;i<7;i++){
+                //czy=false;
+                for(int j=0;j<planLista.size();j++){
+                    if(planLista.get(j).Id_dzien.equals("2")&&planLista.get(j).Id_godzina.equals(Integer.toString(i))&&planLista.get(j).Id_klasa.equals(Integer.toString(wejscie))){
+                        przedTabsr.set(i, planLista.get(j).Id_przedmiot);
+                    //    czy=true;
+                    }
+                }
+            }
+            return przedTabsr.get(iteratorsr-1);
+        }
+                        if(x.equals("Czwartek")){
+                            
+        iteratorczw++;
+        if(iteratorczw==8){
+            iteratorczw=1;
+        }
+            for(int i=0;i<7;i++){
+                //czy=false;
+                for(int j=0;j<planLista.size();j++){
+                    if(planLista.get(j).Id_dzien.equals("3")&&planLista.get(j).Id_godzina.equals(Integer.toString(i))&&planLista.get(j).Id_klasa.equals(Integer.toString(wejscie))){
+                        przedTabczw.set(i, planLista.get(j).Id_przedmiot);
+                       // czy=true;
+                    }
+                }
+            }
+            return przedTabczw.get(iteratorczw-1);
+        }
+                                if(x.equals("Piatek")){
+                                    
+        iteratorpt++;
+        if(iteratorpt==8){
+            iteratorpt=1;
+        }
+            for(int i=0;i<7;i++){
+                //czy=false;
+                for(int j=0;j<planLista.size();j++){
+                    if(planLista.get(j).Id_dzien.equals("4")&&planLista.get(j).Id_godzina.equals(Integer.toString(i))&&planLista.get(j).Id_klasa.equals(Integer.toString(wejscie))){
+                        przedTabpt.set(i, planLista.get(j).Id_przedmiot);
+                  //      czy=true;
+                    }
+                }
+            }
+            return przedTabpt.get(iteratorpt-1);
+        }
+//        System.out.println("SZUKAM"+(iterator-1)); //zerować iteraor zrobić aby nie dodawalo ale zmienialo do listy 
         return przedTab.get(iterator-1);
     }
 
@@ -170,7 +253,7 @@ public class Plan {
     
     public void szukajPlan(){
         //for(int i=0;i<planLista.size();i++){
-            System.out.println("info "+ planLista.get(0).Id_klasa);
+            System.out.println("info "+ planLista.get(wejscie).Id_klasa);
             //if(wejscie == planLista.get(i).Id_klasa){
                 
                 
