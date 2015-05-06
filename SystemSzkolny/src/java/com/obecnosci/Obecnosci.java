@@ -5,11 +5,8 @@
  */
 package com.obecnosci;
 
-import com.godziny.Godziny;
-import com.klasa.Klasa;
 import com.klasa.Labcon;
 import com.user.User;
-import java.awt.event.ActionEvent;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 
@@ -41,7 +38,8 @@ public class Obecnosci extends User {
     public int idNieobecnosci;
     public int zapisz;
     public String wybranaGodzina;
-
+    
+    
     public String getWybranaGodzina() {
         return wybranaGodzina;
     }
@@ -75,6 +73,7 @@ public class Obecnosci extends User {
         stmt.executeQuery(sql2); 
        
         System.out.println("user "+wybranyID);
+        
         String strSql="select ID, Id_uzytkownik, Id_godzina, Data, Godzina from Obecnosci where Id_uzytkownik="+wybranyID;
             
         result=stmt.executeQuery(strSql);
@@ -153,22 +152,17 @@ public class Obecnosci extends User {
         stmt=con1.createStatement();
         String sql2 = "USE 686_szkola";
         stmt.executeQuery(sql2); 
-                
-        //System.out.println("nieobecnosc "+ ind2);
-        String strSql="select Id, Id_uzytkownik, Godzina, Data from Obecnosci where Id_uzytkownik="+wybranyID;
+              
+        String strSql="select Id from Obecnosci";
             
         result=stmt.executeQuery(strSql);
         while(result.next()){
             ObecnosciInfo nowa = new ObecnosciInfo();
             nowa.setID(result.getString("Id"));
-            nowa.setUzytkownik(result.getString("Id_uzytkownik"));
-            nowa.setGodzina(result.getString("Godzina"));
-            nowa.setData(result.getString("Data"));
+            
             listaID.add(nowa);
         }
         result.close();
-        
-
         return listaID;
     }
 
@@ -185,7 +179,7 @@ public class Obecnosci extends User {
            tmp = Integer.parseInt(listaID.get(i).ID);
            if(max < tmp){
                max = tmp;          
-            }
+           }
        }
        max++;
        return max;
@@ -198,8 +192,52 @@ public class Obecnosci extends User {
      return ft.format(dNow);
     }
     
+    public List<ObecnosciInfo> listaDoOb = new ArrayList();
+    
+    public List<ObecnosciInfo> getListaDoOb(int wybranyID, int idNN) throws SQLException{
+        listaDoOb.clear();
+        Labcon lc = new Labcon();
+        con1 = lc.getLocalConnection();
+        stmt=con1.createStatement();
+        String sql2 = "USE 686_szkola";
+        stmt.executeQuery(sql2); 
+       
+        System.out.println("user2 "+wybranyID);
+        System.out.println("zmienna "+idNN);
+        String strSql="select ID, Id_uzytkownik, Id_godzina, Data, Godzina from Obecnosci where Id_uzytkownik="+wybranyID;
+            
+        result=stmt.executeQuery(strSql);
+
+        while(result.next()){
+            ObecnosciInfo nowa = new ObecnosciInfo();
+            nowa.setID(result.getString("Id"));
+            nowa.setGodzina(result.getString("Godzina"));
+            nowa.setUzytkownik(result.getString("Id_uzytkownik"));  
+            nowa.setData(result.getString("Data"));
+            listaDoOb.add(nowa);
+        }
+        result.close();
+        con1.close();
+        getgodzinLista();
+        return listaDoOb;
+    }
+    
+    public void setListaDoOb(List<ObecnosciInfo> listaDoOb) {
+        this.listaDoOb = listaDoOb;
+    }
+    
    
-    public void usNieobecnosc(int idd)throws SQLException{
+    private int idN;
+
+    public int getIdN() {
+        return idN;
+    }
+
+    public void setIdN(int idN) {
+        this.idN = idN;
+    }
+    
+    public void usNieobecnosc(int idN, int idUs)throws SQLException{
        
         Connection con1 = null;
         Statement stmt = null;
@@ -210,23 +248,21 @@ public class Obecnosci extends User {
         String sql = "USE 686_szkola";
         stmt.executeQuery(sql);
         
-        
-        System.out.println("  usun taka nieobecnosc : "+idd);
         try {
-               System.out.println("  usun taka nieobecnosc : ");
-            String query = "DELETE FROM Obecnosci WHERE Id="+idd;
+            
+            System.out.println("  usun taka nieobecnosc : "+idN + "    i id user = "+ idUs);
+            
+            String query = "DELETE FROM Obecnosci WHERE Id="+idN+" and Id_uzytkownik="+idUs;
             //System.out.println("insert query is--" +query);
             stmt.executeUpdate(query);
             
-//            FacesContext context = FacesContext.getCurrentInstance();
-//            context.addMessage(null, new FacesMessage("Usprawiedliwiono", ""));
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Usprawiedliwiono", ""));
          
         } catch (Exception e) {
             System.out.println("Exception is:-"+e.getMessage());
         }
-        
-        
-        
+       
     }
     
     
@@ -240,7 +276,8 @@ public class Obecnosci extends User {
         String sql = "USE 686_szkola";
         stmt.executeQuery(sql);
         
-
+        getListaObecnosci();
+        
         try{
             System.out.println("  dodano taka nieobecnosc : userID " +iduser+ "  godzina "+ wybranaGodzina +"  IDdodanejNieobecnosci " +zwrocMaxIdNieobecnosci());
             String query = "INSERT INTO Obecnosci(Id, Id_uzytkownik, Id_godzina, Data, Godzina) values ('"+zwrocMaxIdNieobecnosci()+"','"+iduser+"','"+0+"','"+zwrocDate()+"','"+wybranaGodzina+"')";

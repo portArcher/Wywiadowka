@@ -138,21 +138,39 @@
                                     </f:facet>
                                     
                                     <p:column headerText="Imie" style="width:50px" >
+                                        <h:outputText value="#{ucz.idUser}"/>
+                                    </p:column>
+                                    
+                                    <p:column headerText="Imie" style="width:50px" >
                                         <h:outputText value="#{ucz.imie}"/>
                                     </p:column>
 
                                     <p:column headerText="Nazwisko" style="width:50px">
                                         <h:outputText value="#{ucz.nazwisko}"/>     
                                     </p:column>
-                                    <p:column headerText="Wybierz Ucznia" style="width:50px">
-                                        <p:commandButton update=":form1:usprawiedliw" value="Usprawiedliw" oncomplete="PF('ListaUczniowUsun').hide(); PF('usprawiedliwObecnosci').show()">
-                                            <f:setPropertyActionListener value="#{ucz.imie}" target="#{u.wybranyUczenImie}"/>
-                                            <f:setPropertyActionListener value="#{ucz.nazwisko}" target="#{u.wybranyUczenNazwisko}"/>
-                                            <f:setPropertyActionListener value="#{ucz.idUser}" target="#{o.wybranyID}"/>                 
-                                        </p:commandButton>
-                                    </p:column>
-
-                                </p:dataTable>            
+                                    <p:column headerText="Nazwisko" style="width:50px">
+                                   
+                                        <p:selectOneMenu value="#{o.idN}" style="width:125px" >                                       
+                                            <f:selectItems var="obb" value="#{o.getListaDoOb(ucz.idUser, o.idN)}" itemLabel="#{obb.ID}" itemValue="#{obb.ID}"/>
+                                        </p:selectOneMenu> 
+                                    
+                                        <p:commandButton value="Usprawiedliw" actionListener="#{o.usNieobecnosc(o.idN, ucz.idUser)}" /> 
+                                            
+                                     </p:column>
+                                    
+                                </p:dataTable> 
+                                
+                                <!--<p:column headerText="Nazwisko" style="width:50px">
+                                   
+                                        <p:selectOneMenu value="#{o.idN}" style="width:125px" >                                       
+                                            <f:selectItems var="obb" value="#{o.getListaDoOb(ucz.idUser, o.idN)}" itemLabel="#{obb.ID}" itemValue="#{obb.ID}"/>
+                                        </p:selectOneMenu> 
+                                    
+                                        <p:commandButton value="Usprawiedliw" actionListener="#{o.usNieobecnosc(o.idN, ucz.idUser)}" /> 
+                                            
+                                     </p:column>
+                                    <f:facet name="footer">
+                                    </f:facet>-->
                             </p:outputPanel>
                         </p:dialog>
 
@@ -228,12 +246,12 @@
 
                         <p:dialog header="Obecności ucznia" widgetVar="usprawiedliwObecnosci" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="80%" >
                             <p:outputPanel id="usprawiedliw" style="text-align:center;">                                   
-                                <p:dataTable var="ob2" value="#{o.listaID}">
+                                <p:dataTable var="ob2" value="#{o.listaObecnosci}">
                                     <f:facet name="header">
                                         #{u.wybranyUczenImie} #{u.wybranyUczenNazwisko} #{o.wybranyID}
                                     </f:facet>
-                                    <p:column headerText="Kiedy nieobecny">
-                                       <p:commandButton value="#{ob2.ID}" action="#{o.usNieobecnosc(ob2.ID)}" process="@this"/> 
+                                    <p:column headerText="ID">
+                                       #{ob2.ID}
                                     </p:column>
                                     <p:column headerText="Kiedy nieobecny">
                                        #{ob2.data}
@@ -242,17 +260,18 @@
                                         #{ob2.godzina}      
                                     </p:column>
                                     <p:column headerText="Kiedy nieobecny"> 
-                                        <p:commandButton value="#{ob2.ID}" actionListener="#{o.usNieobecnosc(ob2.ID)}" process="@this"> 
-                                             
+                                        <p:commandButton value="usprawiedliw" actionListener="#{o.usNieobecnosc(ob2.ID)}" process="@this">   
+                                            <!--
+                                   
+                                    -->
                                         </p:commandButton>
                                     </p:column>
   
-                                </p:dataTable>     
+                                </p:dataTable>  
+                               
+                                
                             </p:outputPanel>
                         </p:dialog>
-
-
-
                     </h:form>
                 </ui:insert>
             </div>
