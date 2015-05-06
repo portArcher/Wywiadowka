@@ -14,7 +14,7 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name="g")
 @SessionScoped
-public class Godziny{
+public class Godziny {
 Connection con1 = null;
     CallableStatement call= null;
     ResultSet result = null;
