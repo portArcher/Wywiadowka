@@ -207,7 +207,7 @@
                                 </p:dataTable> 
                                 <p:selectOneMenu value="#{o.wybranaGodzina}" style="width:125px" >
                                     <f:selectItem itemLabel="Wybierz godzinę" itemValue="" />
-                                    <f:selectItems value="#{g.godzinLista}" />
+                                    <f:selectItems value="#{g.godzinLista}"/>
                                 </p:selectOneMenu>     
                             </p:outputPanel>
                         </p:dialog>
@@ -228,12 +228,12 @@
 
                         <p:dialog header="Obecności ucznia" widgetVar="usprawiedliwObecnosci" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="80%" >
                             <p:outputPanel id="usprawiedliw" style="text-align:center;">                                   
-                                <p:dataTable var="ob2" value="#{o.listaID}">
+                                <p:dataTable var="ob2" value="#{o.listaObecnosci}">
                                     <f:facet name="header">
                                         #{u.wybranyUczenImie} #{u.wybranyUczenNazwisko} #{o.wybranyID}
                                     </f:facet>
                                     <p:column headerText="Kiedy nieobecny">
-                                       <p:commandButton value="#{ob2.ID}" action="#{o.usNieobecnosc(ob2.ID)}" process="@this"/> 
+                                        <p:commandButton value="#{ob2.ID}" action="#{o.setPomoc(ob2.ID)}" process="@this"/> 
                                     </p:column>
                                     <p:column headerText="Kiedy nieobecny">
                                        #{ob2.data}
@@ -242,17 +242,28 @@
                                         #{ob2.godzina}      
                                     </p:column>
                                     <p:column headerText="Kiedy nieobecny"> 
-                                        <p:commandButton value="#{ob2.ID}" actionListener="#{o.usNieobecnosc(ob2.ID)}" process="@this"> 
-                                             
+                                        
+                                        
+                                        <p:commandButton value="Usuń" actionListener="#{o.usNieobecnosc(ob2.ID)}">
+                                            <f:setPropertyActionListener value="#{ob2.ID}" target="#{o.pomoc}"/>                 
                                         </p:commandButton>
+ 
+                                        
+                                    
                                     </p:column>
   
                                 </p:dataTable>     
                             </p:outputPanel>
                         </p:dialog>
 
-
-
+                        <p:dialog header="Usunięcie" widgetVar="koniecobecnosci" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="80%" >
+                            <p:outputPanel id="koniec" style="text-align:center;">
+                            <p:growl id="growl1" life="2000" />            
+                                <p:commandButton value="Zamknij" oncomplete="PF('koniecobecnosci').hide()"/>     
+                                
+                            </p:outputPanel> 
+                            
+                        </p:dialog>
                     </h:form>
                 </ui:insert>
             </div>

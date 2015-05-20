@@ -41,6 +41,15 @@ public class Obecnosci extends User {
     public int idNieobecnosci;
     public int zapisz;
     public String wybranaGodzina;
+    public String pomoc;
+
+    public String getPomoc() {
+        return pomoc;
+    }
+
+    public void setPomoc(String pomoc) {
+        this.pomoc = pomoc;
+    }
 
     public String getWybranaGodzina() {
         return wybranaGodzina;
@@ -155,7 +164,7 @@ public class Obecnosci extends User {
         stmt.executeQuery(sql2); 
                 
         //System.out.println("nieobecnosc "+ ind2);
-        String strSql="select Id, Id_uzytkownik, Godzina, Data from Obecnosci where Id_uzytkownik="+wybranyID;
+        String strSql="select Id, Id_uzytkownik, Godzina, Data from Obecnosci";
             
         result=stmt.executeQuery(strSql);
         while(result.next()){
@@ -197,26 +206,26 @@ public class Obecnosci extends User {
         System.out.println("" + ft.format(dNow) );
      return ft.format(dNow);
     }
-    
+    public void wyswietl(){
+        System.out.println("wyswietlam ");
+    }
    
     public void usNieobecnosc(int idd)throws SQLException{
-       
-        Connection con1 = null;
-        Statement stmt = null;
+       System.out.println("  usun taka nieobecnosc idd : "+idd);
+        Connection con4 = null;
+        Statement stmt4 = null;
         //ResultSet result = null;
         Labcon lc = new Labcon();
-        con1 = lc.getLocalConnection();
-        stmt = con1.createStatement();
+        con4 = lc.getLocalConnection();
+        stmt4 = con4.createStatement();
         String sql = "USE 686_szkola";
-        stmt.executeQuery(sql);
+        stmt4.executeQuery(sql);
         
-        
-        System.out.println("  usun taka nieobecnosc : "+idd);
         try {
                System.out.println("  usun taka nieobecnosc : ");
             String query = "DELETE FROM Obecnosci WHERE Id="+idd;
             //System.out.println("insert query is--" +query);
-            stmt.executeUpdate(query);
+            stmt4.executeUpdate(query);
             
 //            FacesContext context = FacesContext.getCurrentInstance();
 //            context.addMessage(null, new FacesMessage("Usprawiedliwiono", ""));
