@@ -1,0 +1,9 @@
+<Context>
+ 
+  <Resource name="jdbc/baza" auth="Container" type="javax.sql.DataSource"
+               maxActive="50" maxIdle="30" maxWait="10000"
+               username="686_szkola" password="Projekt3s" 
+               driverClassName="com.mysql.jdbc.Driver"
+               url="jdbc:mysql://mysql.hosteam.pl:3306/686_szkola"/>
+ 
+</Context>

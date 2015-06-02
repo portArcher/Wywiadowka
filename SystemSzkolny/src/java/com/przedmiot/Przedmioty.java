@@ -20,12 +20,23 @@ public class Przedmioty {
     CallableStatement call= null;
     ResultSet result = null;
     Statement stmt = null;
+    Labcon lc = new Labcon();
+    public String przedmiot;
 
+    public String getPrzedmiot() {
+        return przedmiot;
+    }
+
+    public void setPrzedmiot(String przedmiot) {
+        this.przedmiot = przedmiot;
+    }
+
+    
     private final List <PrzedmiotInfo> przedmiotyLista = new ArrayList();
     //connect to DB and get customer list
     public List getPrzedmiotyList() throws SQLException{
         przedmiotyLista.clear();
-        Labcon lc = new Labcon();
+        
         con1 = lc.getLocalConnection();
         stmt=con1.createStatement();
         String sql = "USE 686_szkola";
@@ -42,6 +53,7 @@ public class Przedmioty {
             przedmiotyLista.add(nowa);
         }
         result.close();
+        con1.close();
         return przedmiotyLista;
     }
 

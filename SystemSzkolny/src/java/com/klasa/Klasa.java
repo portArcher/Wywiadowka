@@ -17,13 +17,17 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name="d")
 @SessionScoped
 public class Klasa extends User{
-    Connection con1 = null;
+   
     CallableStatement call= null;
     ResultSet result = null;
     Statement stmt = null;
     CallableStatement call2= null;
     ResultSet result2 = null;
     Statement stmt2 = null;
+    Labcon lc = new Labcon();
+    Connection con1 = lc.getLocalConnection();
+    
+    
     public String wejscie;
 
     public String getWejscie() {
@@ -64,8 +68,8 @@ public class Klasa extends User{
 
     public List getKlasaList() throws SQLException{
         klasaLista.clear();
-        Labcon lc = new Labcon();
-        con1 = lc.getLocalConnection();
+        //Labcon lc = new Labcon();
+        
         stmt=con1.createStatement();
         String sql = "USE 686_szkola";
         stmt.executeQuery(sql); 
@@ -81,7 +85,7 @@ public class Klasa extends User{
             klasaLista.add(nowa);
         }
         result.close();
-        con1.close();
+        //con1.close();
         return klasaLista;
     }
     
@@ -89,8 +93,8 @@ public class Klasa extends User{
 
     public List<UserInfo> getUserListwKlasie() throws SQLException{
         UserListwKlasie.clear();
-        Labcon lc = new Labcon();
-        con1 = lc.getLocalConnection();
+        
+        
         stmt2=con1.createStatement();
         String sql2 = "USE 686_szkola";
         stmt2.executeQuery(sql2); 
@@ -108,7 +112,7 @@ public class Klasa extends User{
             UserListwKlasie.add(nowa);
         }
         result2.close();
-        con1.close();
+        //con1.close();
         return UserListwKlasie;
     }
 

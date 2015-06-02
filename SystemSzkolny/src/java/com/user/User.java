@@ -20,10 +20,11 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean(name="u")
 @RequestScoped
 public class User{
-    Connection con1 = null;
     CallableStatement call= null;
     ResultSet result = null;
     Statement stmt = null;
+    Labcon lc = new Labcon();
+        Connection con1 = lc.getLocalConnection();
 
     /**
      *
@@ -68,9 +69,7 @@ public class User{
     //connect to DB and get customer list
     public List getUserList() throws SQLException{
         userLista.clear();
-        Labcon lc = new Labcon();
-        
-        con1 = lc.getLocalConnection();
+     
         String sql = "USE 686_szkola";
         stmt=con1.createStatement();
         

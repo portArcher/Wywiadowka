@@ -32,10 +32,12 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name="o")
 @SessionScoped
 public class Obecnosci extends User {
-    Connection con1 = null;
     CallableStatement call= null;
     ResultSet result = null;
     Statement stmt = null;
+    Labcon lc = new Labcon();
+    Connection con1 = lc.getLocalConnection();
+
     String id = null;
     public int wybranyID;
     public int idNieobecnosci;
@@ -77,13 +79,12 @@ public class Obecnosci extends User {
 
     public List<ObecnosciInfo> getListaObecnosci() throws SQLException{
         listaObecnosci.clear();
-        Labcon lc = new Labcon();
-        con1 = lc.getLocalConnection();
+        
         stmt=con1.createStatement();
         String sql2 = "USE 686_szkola";
         stmt.executeQuery(sql2); 
        
-        System.out.println("user "+wybranyID);
+        //System.out.println("user "+wybranyID);
         String strSql="select ID, Id_uzytkownik, Id_godzina, Data, Godzina from Obecnosci where Id_uzytkownik="+wybranyID;
             
         result=stmt.executeQuery(strSql);
@@ -97,7 +98,7 @@ public class Obecnosci extends User {
             listaObecnosci.add(nowa);
         }
         result.close();
-        con1.close();
+        //con1.close();
         getgodzinLista();
         return listaObecnosci;
     }
@@ -120,8 +121,7 @@ public class Obecnosci extends User {
     
     public List getgodzinLista() throws SQLException{
         godzinLista.clear();
-        Labcon lc = new Labcon();
-        con1 = lc.getLocalConnection();
+        
         stmt=con1.createStatement();
         String sql = "USE 686_szkola";
         stmt.executeQuery(sql); 
@@ -136,7 +136,7 @@ public class Obecnosci extends User {
             godzinLista.add(nowa);
         }
         result.close();
-        con1.close();
+        //con1.close();
         return godzinLista;
     }
     
@@ -157,8 +157,7 @@ public class Obecnosci extends User {
 
     public List<ObecnosciInfo> getListaID()throws SQLException{
         listaID.clear();
-        Labcon lc = new Labcon();
-        con1 = lc.getLocalConnection();
+        
         stmt=con1.createStatement();
         String sql2 = "USE 686_szkola";
         stmt.executeQuery(sql2); 
@@ -232,19 +231,16 @@ public class Obecnosci extends User {
          
         } catch (Exception e) {
             System.out.println("Exception is:-"+e.getMessage());
-        }
-        
-        
-        
+        }    
     }
     
     
     public void dodajObecnosc(int iduser)throws SQLException{
-        Connection con1 = null;
+        //Connection con1 = null;
         Statement stmt = null;
         //ResultSet result = null;
-        Labcon lc = new Labcon();
-        con1 = lc.getLocalConnection();
+        //Labcon lc = new Labcon();
+        //con1 = lc.getLocalConnection();
         stmt = con1.createStatement();
         String sql = "USE 686_szkola";
         stmt.executeQuery(sql);
