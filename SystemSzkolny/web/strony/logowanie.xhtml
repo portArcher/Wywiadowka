@@ -45,17 +45,17 @@
                             <tbody>
                                 <tr>
                                     <td>LOGIN:</td>
-                                    <td><h:inputText style="height: 25px"/></td>
+                                    <td><h:inputText value="#{dodajUsera.imieDodaj}" style="height: 25px"/></td>
                                 </tr>
 
                                 <tr>
                                     <td>HASŁO:</td>
-                                    <td><h:inputSecret style="height: 25px"/></td>
+                                    <td><h:inputSecret value="#{dodajUsera.hasloDodaj}" style="height: 25px"/></td>
                                 </tr>
                             </tbody>
                         </table>
                         <br/>
-                        <h:commandButton value="zaloguj" style="width: 230px; border-radius: 0px; color: white; height: 35px; background-color: #b1320f" action="/strony/index2.xhtml"/>
+                        <h:commandButton value="zaloguj" style="width: 230px; border-radius: 0px; color: white; height: 35px; background-color: #b1320f" action="#{dodajUsera.zaloguj()}"/>
                     </center>
 
                 </h:form>

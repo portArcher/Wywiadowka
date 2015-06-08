@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Wirtualna Szkoła</title>
+        
+ 
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+            <ui:insert name="top">
+                <h:graphicImage value="/resources/images/logo.png"/>
+            </ui:insert>
+        </div>
+
+        <div id="top2">
+            <ui:insert name="top2">
+
+                <h:form>      
+                    <h:outputText value="Witaj uczniu!" style="background-color: transparent ;color: white; border: 0px; width: 140px"/>       
+                </h:form>
+
+
+            </ui:insert>
+        </div>
+
+        <div>
+            <div id="left">
+                <ui:insert name="left">
+                    
+                     <h:form>
+                        <br/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/powiadomienia.png']});  " action="/strony/aktualnosci_1.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/plan_lekcji_new.png']});  " action="/strony/plan_lekcji_1.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/obecnosc.png']});  " action="/strony/obecnosci_1.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/dziennik.png']});  " action="/strony/oceny_1.xhtml"/>
+                        <h:commandButton style="width: 100px; height:100px; border: 0px;background: url(#{resource['images/konto.png']});  " action="/strony/moje_konto_1.xhtml"/>
+
+                        
+                    </h:form>
+                    
+                </ui:insert>
+            </div>
+            
+            
+            <div id="content" class="left_content">
+                <ui:insert name="content">
+                    <h:form>
+                        <center>
+                    <f:view>
+                    <html>
+                        <head>
+                            <link rel="stylesheet" type="text/css" href="css/table-style.css" />
+                        </head>
+                        
+                        
+                        <!--<h:dataTable value="#{klasa.klasaList}" var="c"
+                            styleClass="order-table"
+                            headerClass="order-table-header"
+                            rowClasses="order-table-odd-row,order-table-even-row">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Klasa ID" />
+                            </f:facet>
+                            <h:outputText value="#{c.klasaID}" />
+                            
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nazwa" />
+                            </f:facet>
+                            <h:outputText value="#{c.klasaNazwa}" />
+                        </h:column>
+                        </h:dataTable>
+                        -->
+                        <h:form id="form1">
+                            <p:dataTable id="radioDT" var="kl" value="#{d.klasaList}" rowKey="#{kl}" style="width:300px" >
+                            <f:facet name="header">
+                            </f:facet>
+                             <p:column headerText="Id" style="width:30px">
+                                <h:outputText value="#{kl.klasaID}" />
+                            </p:column>
+                            <p:column headerText="Nazwa Klasy">
+                                <h:outputText value="#{kl.klasaNazwa}" />
+                            </p:column>
+                            <f:facet name="footer">
+                                <h:outputText value="Wpisz ID klasy: "></h:outputText>
+                                <h:inputText value="#{p.wejscie}"></h:inputText>
+                                <p:commandButton process="radioDT" icon="ui-icon-search" value="Wyświetl" action="#{p.szukajPlan()}" oncomplete="PF('PlanLekcji').show();"/>
+                            </f:facet>
+                        </p:dataTable>
+                        
+                            
+                        <!--Okienko wyskakujące-->
+                        <p:dialog header="Plan Lekcji" widgetVar="PlanLekcji" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:outputPanel id="carDetail" style="text-align:center;">
+                                <!--<p:panelGrid  columns="2" rendered="#{not empty dtSelectionView.wybranaKlasa}">
+
+                                    <f:facet name="header">
+                                        <h:outputText value="PLAN LEKCJI" /> 
+                                    </f:facet>
+
+                                    <p:column headerText="Godzina">
+                                        <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+                                    </p:column>
+ 
+                                    <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+ 
+                                    <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+                                    <h:outputText value="Content" /> 
+                                </p:panelGrid>  -->
+                                        <!--not empty 
+                                rendered="#{d.klasaList}"
+                                        
+                                rendered="#{not empty dtSelectionView.wybranaKlasa}"        -->
+                                        
+                                    <p:dataTable var="kl" value="#{g.godzinLista}">
+                                    <f:facet name="header">
+                                        PLAN LEKCJI
+                                    </f:facet>
+                                    
+                                    <p:column headerText="Godzina" style="width:50px" >
+                                        #{kl}
+                                    </p:column>
+                                       
+                                    <p:column headerText="Poniedziałek" style="width:50px">
+                                        #{p.funkcja("Poniedzialek")}               
+                                    </p:column>
+                                    <p:column headerText="Wtorek" style="width:50px">
+                                        
+                                    </p:column>
+                                    <p:column headerText="Środa" style="width:50px">
+                                        
+                                    </p:column>
+                                    <p:column headerText="Czwartek" style="width:50px">
+                                       
+                                    </p:column>
+                                    <p:column headerText="Piątek" style="width:50px">
+                                                                          
+                                    </p:column>
+                                </p:dataTable>            
+                            </p:outputPanel>
+                        </p:dialog>
+                        </h:form>
+                    </html>
+                    </f:view>
+                        </center>
+                    </h:form>
+             </ui:insert>
+            </div>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">Copyright by ŁŁS @ 2014</ui:insert>
+        </div>
+
+    </h:body>
+</html>
+

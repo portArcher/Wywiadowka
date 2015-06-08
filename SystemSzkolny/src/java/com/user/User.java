@@ -32,7 +32,17 @@ public class User{
     public String wybranyUczenImie = new String();
     public String wybranyUczenNazwisko = new String();
     public int wybranyUczenId;
+    public String wybranyUserID;
 
+    public String getWybranyUserID() {
+        return wybranyUserID;
+    }
+
+    public void setWybranyUserID(String wybranyUserID) {
+        this.wybranyUserID = wybranyUserID;
+    }
+    
+    
     public int getWybranyUczenId() {
         return wybranyUczenId;
     }
@@ -65,7 +75,7 @@ public class User{
         this.userLista = userLista;
     }
 
-    private List <UserInfo> userLista = new ArrayList();
+    List <UserInfo> userLista = new ArrayList();
     //connect to DB and get customer list
     public List getUserList() throws SQLException{
         userLista.clear();
@@ -77,7 +87,6 @@ public class User{
         String strSql="select ID, Imie, Id_klasa, Nazwisko from Uzytkownicy";
         //System.err.println("****"+strSql);
         result=stmt.executeQuery(strSql);
-        
         while(result.next()){
             UserInfo nowa = new UserInfo();
             nowa.setIdUser(result.getString("Id"));
@@ -86,14 +95,44 @@ public class User{
             userLista.add(nowa);
         }
         result.close();
-         con1.close();
+        con1.close();
         return userLista;  
     }
     
   
     public class UserInfo {
-            String imie, nazwisko, haslo, IdUser;
+            public String IdUser;
+            public String email;
+            public String haslo;
+            public String imie;
+            public String nazwisko;
+            public String uprawanienia;
+            public int klasa;
 
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getUprawanienia() {
+            return uprawanienia;
+        }
+
+        public void setUprawanienia(String uprawanienia) {
+            this.uprawanienia = uprawanienia;
+        }
+
+        public int getKlasa() {
+            return klasa;
+        }
+
+        public void setKlasa(int klasa) {
+            this.klasa = klasa;
+        }
+        
         public String getNazwisko() {
             return nazwisko;
         }

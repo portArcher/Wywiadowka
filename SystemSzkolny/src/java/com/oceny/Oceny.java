@@ -36,7 +36,9 @@ public class Oceny extends User {
     public String id_user;
     public String ocena;
     public String przedmiot;
-
+    public String oc = "0";
+    
+    
     public String getId_user() {
         return id_user;
     }
@@ -70,8 +72,9 @@ public class Oceny extends User {
         stmt=con1.createStatement();
         String sql = "USE 686_szkola";
         stmt.executeQuery(sql); 
+        
         //System.out.println("user oceny  " + id_user);
-        String strSql="select ocena, Id_uzytkownik, przedmiot from Oceny where Id_uzytkownik="+id_user;
+        String strSql="select ocena, Id_uzytkownik, przedmiot from Oceny where Id_uzytkownik="+oc;
         //System.err.println("****"+strSql);
         result=stmt.executeQuery(strSql);
         

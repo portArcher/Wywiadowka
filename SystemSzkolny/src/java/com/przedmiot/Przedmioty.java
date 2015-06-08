@@ -31,7 +31,6 @@ public class Przedmioty {
         this.przedmiot = przedmiot;
     }
 
-    
     private final List <PrzedmiotInfo> przedmiotyLista = new ArrayList();
     //connect to DB and get customer list
     public List getPrzedmiotyList() throws SQLException{
@@ -56,7 +55,6 @@ public class Przedmioty {
         con1.close();
         return przedmiotyLista;
     }
-
     
     public class PrzedmiotInfo {
         public String przedmiotID;

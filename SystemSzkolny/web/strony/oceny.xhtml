@@ -108,7 +108,7 @@
                         </p:dialog>
 
                        
-                        <p:dialog header="Obecności" widgetVar="ListaUczniowUsun" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="50%">
+                        <p:dialog header="Oceny" widgetVar="ListaUczniowUsun" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="50%">
                             <p:outputPanel id="usun" style="text-align:center;">                                   
                                 <p:dataTable var="ucz" value="#{d.userListwKlasie}">
                                     <f:facet name="header">
@@ -134,7 +134,7 @@
                             </p:outputPanel>
                         </p:dialog>
 
-                        <p:dialog header="Obecności" widgetVar="ListaUczniow" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="50%">
+                        <p:dialog header="Oceny" widgetVar="ListaUczniow" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="50%">
                             <p:outputPanel id="carDetail" style="text-align:center;">                                   
                                 <p:dataTable var="ucz" value="#{d.userListwKlasie}">
                                     <f:facet name="header">
@@ -149,7 +149,7 @@
                                         <h:outputText value="#{ucz.nazwisko}"/>     
                                     </p:column>
                                     <p:column headerText="Wybierz Ucznia" style="width:50px">
-                                        <p:commandButton update=":form1:zobacz" value="Zobacz nieobecności" oncomplete="PF('ListaUczniow').hide(); PF('zobaczObecnosci').show()">
+                                        <p:commandButton update=":form1:zobacz" value="Zobacz Oceny" oncomplete="PF('ListaUczniow').hide(); PF('zobaczObecnosci').show()">
                                             <f:setPropertyActionListener value="#{ucz.imie}" target="#{u.wybranyUczenImie}"/>
                                             <f:setPropertyActionListener value="#{ucz.nazwisko}" target="#{u.wybranyUczenNazwisko}"/>
                                             <f:setPropertyActionListener value="#{ucz.idUser}" target="#{oceny.id_user}"/>                 
@@ -203,7 +203,7 @@
                             </p:outputPanel>
                         </p:dialog>
 
-                        <p:dialog header="Obecności ucznia" widgetVar="zobaczObecnosci" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="50%" >
+                        <p:dialog header="Oceny ucznia" widgetVar="zobaczObecnosci" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="50%" >
                             <p:outputPanel id="zobacz" style="text-align:center;">                                   
                                 <p:dataTable var="oc" value="#{oceny.listaOcen}">
                                     <f:facet name="header">
@@ -219,7 +219,7 @@
                             </p:outputPanel>
                         </p:dialog>
 
-                        <p:dialog header="Obecności ucznia" widgetVar="usprawiedliwObecnosci" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="80%" >
+                        <p:dialog header="Oceny ucznia" widgetVar="usprawiedliwObecnosci" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="80%" >
                             <p:outputPanel id="usprawiedliw" style="text-align:center;">                                   
                                 <p:dataTable var="ob2" value="#{o.listaObecnosci}">
                                     <f:facet name="header">

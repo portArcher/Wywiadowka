@@ -5,11 +5,11 @@
         <group>
             <file>file:/C:/Users/Lukasz/Documents/Wywiadowka/SystemSzkolny/src/java/com/obecnosci/Obecnosci.java</file>
             <file>file:/C:/Users/Lukasz/Documents/Wywiadowka/SystemSzkolny/src/java/com/przedmiot/Przedmioty.java</file>
-            <file>file:/C:/Users/Lukasz/Documents/Wywiadowka/SystemSzkolny/src/java/com/klasa/Klasa.java</file>
-            <file>file:/C:/Users/Lukasz/Documents/Wywiadowka/SystemSzkolny/src/java/com/planlekcji/Plan.java</file>
-            <file>file:/C:/Users/Lukasz/Documents/Wywiadowka/SystemSzkolny/src/java/com/dniTygodnia/DniTygodnia.java</file>
+            <file>file:/C:/Users/Lukasz/Documents/Wywiadowka/SystemSzkolny/src/java/com/user/dodajUsera.java</file>
+            <file>file:/C:/Users/Lukasz/Documents/Wywiadowka/SystemSzkolny/web/strony/rejestracja.xhtml</file>
             <file>file:/C:/Users/Lukasz/Documents/Wywiadowka/SystemSzkolny/src/java/com/oceny/Oceny.java</file>
             <file>file:/C:/Users/Lukasz/Documents/Wywiadowka/SystemSzkolny/web/strony/oceny.xhtml</file>
+            <file>file:/C:/Users/Lukasz/Documents/Wywiadowka/SystemSzkolny/src/java/com/user/User.java</file>
         </group>
     </open-files>
 </project-private>
