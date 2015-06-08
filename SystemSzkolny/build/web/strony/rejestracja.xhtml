@@ -42,13 +42,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                 <tr>
-                                    <td>Imie</td>
-                                    <td><h:inputText value="#{dodajUsera.imieDodaj}"/></td>
+                                <tr>
+                                    <td>Imię</td>
+                                    <td><h:inputText value="#{dodajUsera.userIDdodaj}"/></td>
                                 </tr>
                                 <tr>
                                     <td>Nazwisko</td>
-                                    <td><h:inputText value="#{dodajUsera.nazwiskoDodaj}"/></td>
+                                    <td><h:inputText/></td>
+                                </tr>
+                                <tr>
+                                    <td>Login</td>
+                                    <td><h:inputText value="#{dodajUsera.imieDodaj}"/></td>
                                 </tr>
                                 <tr>
                                     <td>Hasło</td>
@@ -58,21 +62,18 @@
                                     <td>Powtórz hasło</td>
                                     <td><h:inputSecret value=" "/></td>
                                 </tr>
-                                <tr>
+                                 <tr>
                                     <td>Adres Email</td>
-                                    <td><h:inputText value="#{dodajUsera.emailDodaj}"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Klasa</td>
-                                    <td><h:inputText value="#{dodajUsera.klasaDodaj}"/></td>
+                                    <td><h:inputText /></td>
                                 </tr>
                                 <tr>
                                     <td>Zarejestruj jako:
 
                                     </td>
-                                    <td>  <h:selectOneRadio value="#{dodajUsera.uprawanieniaDodaj}">
-                                            <f:selectItem itemLabel="Nauczyciel" itemValue="N"/>
-                                            <f:selectItem itemLabel="Uczeń" itemValue="U"/>
+                                    <td>  <h:selectOneRadio value=" ">
+                                            <f:selectItem itemLabel="Nauczyciel" itemValue="Dyrektor" />
+                                            <f:selectItem itemLabel="Uczeń" itemValue="Klient"/>
+                                            <f:selectItem itemLabel="Rodzic" itemValue="Gość"/>
                                         </h:selectOneRadio></td>
                                 </tr>
 

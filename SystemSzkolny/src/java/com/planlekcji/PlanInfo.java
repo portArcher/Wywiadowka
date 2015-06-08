@@ -48,6 +48,8 @@ public class PlanInfo {
             this.Id_klasa = Id_klasa;
         }
 
+        
+        
         public PlanInfo() {
         }
         

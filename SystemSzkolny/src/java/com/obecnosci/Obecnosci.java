@@ -84,7 +84,7 @@ public class Obecnosci extends User {
         String sql2 = "USE 686_szkola";
         stmt.executeQuery(sql2); 
        
-        System.out.println("user "+wybranyID);
+        //System.out.println("user "+wybranyID);
         String strSql="select ID, Id_uzytkownik, Id_godzina, Data, Godzina from Obecnosci where Id_uzytkownik="+wybranyID;
             
         result=stmt.executeQuery(strSql);
